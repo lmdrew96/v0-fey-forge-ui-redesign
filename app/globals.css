@@ -1,0 +1,229 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* FeyForge - Fey Wild Nature Magic Theme */
+:root {
+  /* Core Colors */
+  --background: #f5f5dc; /* Cream/Parchment */
+  --foreground: #2d5016; /* Elven Green */
+
+  --card: #fafafa; /* Warm White */
+  --card-foreground: #2d5016;
+
+  --popover: #fafafa;
+  --popover-foreground: #2d5016;
+
+  --primary: #4a7c59; /* Forest Green */
+  --primary-foreground: #fafafa;
+
+  --secondary: #8ba888; /* Sage Green */
+  --secondary-foreground: #2d5016;
+
+  --muted: #e8e4d4;
+  --muted-foreground: #4a7c59;
+
+  --accent: #00ced1; /* Magical Cyan */
+  --accent-foreground: #0d1f0d;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+
+  --border: #8ba888;
+  --input: #e8e4d4;
+  --ring: #00ced1;
+
+  /* FeyForge Custom Colors */
+  --fey-gold: #ffd700;
+  --fey-silver: #c0c0c0;
+  --fey-cyan: #00ced1;
+  --fey-purple: #9370db;
+  --fey-indigo: #4b0082;
+  --fey-elven: #2d5016;
+  --fey-forest: #4a7c59;
+  --fey-sage: #8ba888;
+
+  --radius: 0.75rem;
+
+  --sidebar: #f5f5dc;
+  --sidebar-foreground: #2d5016;
+  --sidebar-primary: #4a7c59;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #8ba888;
+  --sidebar-accent-foreground: #2d5016;
+  --sidebar-border: #8ba888;
+  --sidebar-ring: #00ced1;
+}
+
+.dark {
+  --background: #0d1f0d; /* Midnight Green */
+  --foreground: #e8e8e8; /* Muted White */
+
+  --card: #1a2f1a; /* Deep Forest */
+  --card-foreground: #e8e8e8;
+
+  --popover: #1a2f1a;
+  --popover-foreground: #e8e8e8;
+
+  --primary: #4a7c59;
+  --primary-foreground: #e8e8e8;
+
+  --secondary: #3d5a3d; /* Moonlit Green */
+  --secondary-foreground: #e8e8e8;
+
+  --muted: #2a2a2a;
+  --muted-foreground: #c0c0c0;
+
+  --accent: #00e5e8; /* Brighter Cyan for dark mode */
+  --accent-foreground: #0d1f0d;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #e8e8e8;
+
+  --border: #3d5a3d;
+  --input: #2a2a2a;
+  --ring: #00e5e8;
+
+  /* FeyForge Custom Colors (Dark Mode) */
+  --fey-gold: #ffd700;
+  --fey-silver: #c0c0c0;
+  --fey-cyan: #00e5e8;
+  --fey-purple: #a78bdb;
+  --fey-indigo: #6a4fc4;
+  --fey-elven: #4a7c59;
+  --fey-forest: #3d5a3d;
+  --fey-sage: #8ba888;
+
+  --sidebar: #1a2f1a;
+  --sidebar-foreground: #e8e8e8;
+  --sidebar-primary: #00e5e8;
+  --sidebar-primary-foreground: #0d1f0d;
+  --sidebar-accent: #3d5a3d;
+  --sidebar-accent-foreground: #e8e8e8;
+  --sidebar-border: #3d5a3d;
+  --sidebar-ring: #00e5e8;
+}
+
+@theme inline {
+  --font-sans: "Cinzel", "Geist", "Geist Fallback", serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-display: "Cinzel Decorative", "Cinzel", serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* FeyForge Custom Colors */
+  --color-fey-gold: var(--fey-gold);
+  --color-fey-silver: var(--fey-silver);
+  --color-fey-cyan: var(--fey-cyan);
+  --color-fey-purple: var(--fey-purple);
+  --color-fey-indigo: var(--fey-indigo);
+  --color-fey-elven: var(--fey-elven);
+  --color-fey-forest: var(--fey-forest);
+  --color-fey-sage: var(--fey-sage);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Floating Particles Animation */
+@keyframes float-particle {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-5px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-15px) scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+@keyframes float-particle-slow {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.2;
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) rotate(120deg);
+    opacity: 0.5;
+  }
+  66% {
+    transform: translateY(-15px) translateX(-10px) rotate(240deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+    opacity: 0.4;
+  }
+  50% {
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    opacity: 0.7;
+  }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+.particle-slow {
+  animation: float-particle-slow 12s ease-in-out infinite;
+}
+
+.particle-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
