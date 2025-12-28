@@ -140,7 +140,7 @@ export function AIAssistantWidget() {
               <Button
                 type="submit"
                 size="sm"
-                className="bg-fey-cyan hover:bg-fey-cyan/80 text-fey-cyan-foreground h-9 px-3 flex-shrink-0"
+                className="bg-fey-cyan hover:bg-fey-cyan/80 text-white h-9 px-3 flex-shrink-0"
                 disabled={!input.trim() || isLoading}
               >
                 <Send className="h-4 w-4" />

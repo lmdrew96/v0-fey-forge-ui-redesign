@@ -122,7 +122,7 @@ export function QuickDiceRoller() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Recent Rolls</span>
-              <Button variant="ghost" size="sm" onClick={clearHistory} className="h-6 px-2">
+              <Button variant="ghost" size="sm" onClick={clearHistory} className="h-6 px-2" aria-label="Clear roll history">
                 <RotateCcw className="h-3 w-3" />
               </Button>
             </div>

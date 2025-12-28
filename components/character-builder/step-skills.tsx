@@ -137,7 +137,7 @@ export function StepSkills() {
             >
               <span className="truncate">{lang}</span>
               {lang !== "Common" && (
-                <button onClick={() => removeLanguage(lang)} className="hover:text-destructive shrink-0">
+                <button onClick={() => removeLanguage(lang)} className="hover:text-destructive shrink-0" aria-label={`Remove ${lang}`}>
                   <X className="h-3 w-3" />
                 </button>
               )}
@@ -178,7 +178,7 @@ export function StepSkills() {
               className="px-3 py-1 bg-fey-purple/20 text-fey-purple font-medium border border-fey-purple/30 flex items-center gap-2 max-w-full"
             >
               <span className="truncate">{tool}</span>
-              <button onClick={() => removeTool(tool)} className="hover:text-destructive shrink-0">
+              <button onClick={() => removeTool(tool)} className="hover:text-destructive shrink-0" aria-label={`Remove ${tool}`}>
                 <X className="h-3 w-3" />
               </button>
             </Badge>

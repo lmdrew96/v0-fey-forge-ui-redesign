@@ -120,7 +120,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
 
           {/* Actions */}
           <div className="flex gap-2 pt-1 min-w-0">
-            <Button asChild variant="outline" size="sm" className="flex-1 text-xs sm:text-sm min-w-0 bg-transparent">
+            <Button asChild variant="outline" size="sm" className="flex-1 text-xs sm:text-sm min-w-0">
               <Link href={`/characters/${character.id}`}>
                 <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
                 <span className="truncate">View Sheet</span>

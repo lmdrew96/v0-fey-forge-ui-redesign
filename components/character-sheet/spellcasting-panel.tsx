@@ -241,7 +241,7 @@ export function SpellcastingPanel({ character, isEditing, onUpdate }: Spellcasti
             min={0}
             max={9}
           />
-          <Button size="icon" onClick={addSpell} className="h-8 w-8 bg-fey-purple hover:bg-fey-purple/80 shrink-0">
+          <Button size="icon" onClick={addSpell} className="h-8 w-8 bg-fey-purple hover:bg-fey-purple/80 shrink-0" aria-label="Add spell">
             <Plus className="h-4 w-4" />
           </Button>
         </div>

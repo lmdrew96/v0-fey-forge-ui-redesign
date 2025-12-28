@@ -154,7 +154,7 @@ export function HealthTracker({ character, isEditing, onUpdate }: HealthTrackerP
             variant="outline"
             onClick={useHitDie}
             disabled={character.hitDice.current <= 0}
-            className="border-fey-sage/30 bg-transparent"
+            className="border-fey-sage/30"
           >
             Use Hit Die
           </Button>

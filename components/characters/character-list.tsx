@@ -163,7 +163,7 @@ export function CharacterList() {
             </div>
             <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">No characters yet</h3>
             <p className="text-sm sm:text-base text-foreground/70 mb-6 max-w-sm">
-              Forge your first hero! Create a character to begin your adventure.
+              Forge your first hero!
             </p>
             <Button asChild className="bg-fey-cyan hover:bg-fey-cyan/90 text-white">
               <Link href="/create-character">

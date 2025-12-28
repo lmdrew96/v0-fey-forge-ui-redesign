@@ -112,7 +112,11 @@ export function LoadEncounterDialog() {
                 key={encounter.id}
                 className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors min-w-0 overflow-hidden"
               >
-                <button onClick={() => handleLoad(encounter.id)} className="flex-1 text-left min-w-0 overflow-hidden">
+                <button 
+                  onClick={() => handleLoad(encounter.id)} 
+                  className="flex-1 text-left min-w-0 overflow-hidden"
+                  aria-label={`Load ${encounter.name} encounter`}
+                >
                   <p className="font-medium truncate text-sm sm:text-base">{encounter.name}</p>
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm text-muted-foreground">
                     <span className="whitespace-nowrap">{encounter.combatants.length} combatants</span>

@@ -201,7 +201,7 @@ export function InventoryPanel({ character, isEditing, onUpdate }: InventoryPane
               min={0}
               step={0.1}
             />
-            <Button size="icon" onClick={addItem} className="h-8 w-8 bg-fey-forest hover:bg-fey-forest/80 shrink-0">
+            <Button size="icon" onClick={addItem} className="h-8 w-8 bg-fey-forest hover:bg-fey-forest/80 shrink-0" aria-label="Add item">
               <Plus className="h-4 w-4" />
             </Button>
           </div>

@@ -130,7 +130,7 @@ export function CharacterHeader({
                 variant="outline"
                 size="sm"
                 onClick={onExport}
-                className="gap-1.5 border-fey-sage/30 bg-transparent"
+                className="gap-1.5 border-fey-sage/30"
               >
                 <Download className="h-4 w-4" />
                 <span className="hidden lg:inline">Export</span>
@@ -139,7 +139,7 @@ export function CharacterHeader({
                 variant="outline"
                 size="sm"
                 onClick={onEdit}
-                className="gap-1.5 border-fey-sage/30 bg-transparent"
+                className="gap-1.5 border-fey-sage/30"
               >
                 <Pencil className="h-4 w-4" />
                 <span className="hidden lg:inline">Edit</span>

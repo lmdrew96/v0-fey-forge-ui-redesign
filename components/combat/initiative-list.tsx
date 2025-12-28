@@ -46,7 +46,7 @@ export function InitiativeList() {
           <div className="flex flex-wrap gap-2">
             {!isInCombat ? (
               <>
-                <Button variant="outline" size="sm" onClick={sortByInitiative}>
+                <Button variant="outline" size="sm" onClick={sortByInitiative} aria-label="Sort combatants by initiative">
                   Sort
                 </Button>
                 <Button size="sm" onClick={startCombat} className="bg-green-600 hover:bg-green-700">
@@ -56,7 +56,7 @@ export function InitiativeList() {
               </>
             ) : (
               <>
-                <Button variant="outline" size="sm" onClick={previousTurn}>
+                <Button variant="outline" size="sm" onClick={previousTurn} aria-label="Previous turn">
                   <SkipBack className="h-4 w-4" />
                 </Button>
                 <Button size="sm" onClick={nextTurn} className="bg-fey-cyan hover:bg-fey-cyan/90">
@@ -67,7 +67,8 @@ export function InitiativeList() {
                   variant="outline"
                   size="sm"
                   onClick={endCombat}
-                  className="text-red-500 border-red-500/50 hover:bg-red-500/10 bg-transparent"
+                  className="text-red-500 border-red-500/50 hover:bg-red-500/10"
+                  aria-label="End combat"
                 >
                   <Square className="h-4 w-4 mr-1" />
                   End
@@ -76,7 +77,7 @@ export function InitiativeList() {
             )}
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-destructive">
+                <Button variant="ghost" size="sm" className="text-destructive" aria-label="Clear all combatants">
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </AlertDialogTrigger>

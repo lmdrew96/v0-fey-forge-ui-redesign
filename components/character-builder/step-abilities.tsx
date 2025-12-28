@@ -230,7 +230,7 @@ export function StepAbilities() {
               variant="outline"
               size="sm"
               onClick={resetAbilities}
-              className="border-border hover:border-fey-purple bg-transparent"
+              className="border-border hover:border-fey-purple"
             >
               <RefreshCw className="h-4 w-4 sm:mr-2" />
               <span className="hidden sm:inline">Reset</span>
@@ -246,9 +246,10 @@ export function StepAbilities() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-7 w-7 sm:h-8 sm:w-8 border-border hover:border-fey-cyan hover:bg-fey-cyan/10 bg-transparent"
+                      className="h-7 w-7 sm:h-8 sm:w-8 border-border hover:border-fey-cyan hover:bg-fey-cyan/10"
                       onClick={() => updateAbility(ability.key as keyof typeof character.abilities, -1)}
                       disabled={score <= 8}
+                      aria-label={`Decrease ${ability.label}`}
                     >
                       <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
@@ -259,9 +260,10 @@ export function StepAbilities() {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-7 w-7 sm:h-8 sm:w-8 border-border hover:border-fey-cyan hover:bg-fey-cyan/10 bg-transparent"
+                      className="h-7 w-7 sm:h-8 sm:w-8 border-border hover:border-fey-cyan hover:bg-fey-cyan/10"
                       onClick={() => updateAbility(ability.key as keyof typeof character.abilities, 1)}
                       disabled={score >= 15 || pointsRemaining <= 0}
+                      aria-label={`Increase ${ability.label}`}
                     >
                       <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>

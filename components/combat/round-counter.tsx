@@ -17,17 +17,18 @@ export function RoundCounter() {
             <Button
               variant="outline"
               size="icon"
-              className="h-8 w-8 bg-transparent"
+              className="h-8 w-8"
               onClick={decrementRound}
               disabled={currentRound <= 1}
+              aria-label="Previous round"
             >
               <Minus className="h-4 w-4" />
             </Button>
-            <span className="text-2xl font-bold text-fey-cyan min-w-[3rem] text-center">{currentRound}</span>
-            <Button variant="outline" size="icon" className="h-8 w-8 bg-transparent" onClick={incrementRound}>
+            <span className="text-2xl font-bold text-fey-cyan min-w-[3rem] text-center" aria-live="polite">{currentRound}</span>
+            <Button variant="outline" size="icon" className="h-8 w-8" onClick={incrementRound} aria-label="Next round">
               <Plus className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={resetRound}>
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={resetRound} aria-label="Reset round counter">
               <RotateCcw className="h-4 w-4" />
             </Button>
           </div>
