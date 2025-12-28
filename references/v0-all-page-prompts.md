@@ -1,6 +1,6 @@
 # FeyForge - v0 Page Prompts
 
-Use these prompts with the project instructions document for consistency.
+Use these prompts with the copilot-instructions document for consistency.
 
 ---
 
