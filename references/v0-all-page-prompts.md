@@ -137,7 +137,7 @@ Use these prompts with the copilot-instructions document for consistency.
 - Click to expand/collapse full session details inline
 - Export session log button
 
-**Note:** Optimized for quick note-taking during/after sessions. Support markdown in notes?
+**Note:** Optimized for quick note-taking during/after sessions. Support markdown in notes.
 
 ---
 
