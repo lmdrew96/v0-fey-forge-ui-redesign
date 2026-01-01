@@ -7,7 +7,10 @@ import { eq, and } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
 export type MapLocation = typeof mapLocations.$inferSelect
-export type NewMapLocation = Omit<typeof mapLocations.$inferInsert, "id" | "userId" | "createdAt">
+export type NewMapLocation = Omit<
+  typeof mapLocations.$inferInsert,
+  "id" | "userId" | "createdAt"
+>
 
 async function requireAuth() {
   const session = await auth()
@@ -34,18 +37,27 @@ export async function fetchUserLocations(): Promise<MapLocation[]> {
     .orderBy(mapLocations.name)
 }
 
-export async function getLocationsByCampaign(campaignId: string): Promise<MapLocation[]> {
+export async function getLocationsByCampaign(
+  campaignId: string
+): Promise<MapLocation[]> {
   const userId = await getAuthUserId()
   if (!userId) return []
 
   return db
     .select()
     .from(mapLocations)
-    .where(and(eq(mapLocations.campaignId, campaignId), eq(mapLocations.userId, userId)))
+    .where(
+      and(
+        eq(mapLocations.campaignId, campaignId),
+        eq(mapLocations.userId, userId)
+      )
+    )
     .orderBy(mapLocations.name)
 }
 
-export async function getLocation(id: string): Promise<MapLocation | undefined> {
+export async function getLocation(
+  id: string
+): Promise<MapLocation | undefined> {
   const userId = await getAuthUserId()
   if (!userId) return undefined
 
@@ -58,7 +70,9 @@ export async function getLocation(id: string): Promise<MapLocation | undefined> 
   return location
 }
 
-export async function createLocation(data: NewMapLocation): Promise<MapLocation> {
+export async function createLocation(
+  data: NewMapLocation
+): Promise<MapLocation> {
   const userId = await requireAuth()
 
   const [location] = await db
@@ -73,7 +87,10 @@ export async function createLocation(data: NewMapLocation): Promise<MapLocation>
   return location
 }
 
-export async function updateLocation(id: string, data: Partial<NewMapLocation>): Promise<MapLocation> {
+export async function updateLocation(
+  id: string,
+  data: Partial<NewMapLocation>
+): Promise<MapLocation> {
   const userId = await requireAuth()
 
   const [location] = await db

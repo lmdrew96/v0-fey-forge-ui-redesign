@@ -9,9 +9,18 @@ import { revalidatePath } from "next/cache"
 export type GameSession = typeof gameSessions.$inferSelect
 export type SessionNote = typeof sessionNotes.$inferSelect
 export type PlotThread = typeof plotThreads.$inferSelect
-export type NewGameSession = Omit<typeof gameSessions.$inferInsert, "id" | "userId" | "createdAt" | "updatedAt">
-export type NewSessionNote = Omit<typeof sessionNotes.$inferInsert, "id" | "timestamp">
-export type NewPlotThread = Omit<typeof plotThreads.$inferInsert, "id" | "userId" | "createdAt">
+export type NewGameSession = Omit<
+  typeof gameSessions.$inferInsert,
+  "id" | "userId" | "createdAt" | "updatedAt"
+>
+export type NewSessionNote = Omit<
+  typeof sessionNotes.$inferInsert,
+  "id" | "timestamp"
+>
+export type NewPlotThread = Omit<
+  typeof plotThreads.$inferInsert,
+  "id" | "userId" | "createdAt"
+>
 
 async function requireAuth() {
   const session = await auth()
@@ -39,14 +48,21 @@ export async function fetchUserSessions(): Promise<GameSession[]> {
     .orderBy(gameSessions.number)
 }
 
-export async function getSessionsByCampaign(campaignId: string): Promise<GameSession[]> {
+export async function getSessionsByCampaign(
+  campaignId: string
+): Promise<GameSession[]> {
   const userId = await getAuthUserId()
   if (!userId) return []
 
   return db
     .select()
     .from(gameSessions)
-    .where(and(eq(gameSessions.campaignId, campaignId), eq(gameSessions.userId, userId)))
+    .where(
+      and(
+        eq(gameSessions.campaignId, campaignId),
+        eq(gameSessions.userId, userId)
+      )
+    )
     .orderBy(gameSessions.number)
 }
 
@@ -63,7 +79,9 @@ export async function getSession(id: string): Promise<GameSession | undefined> {
   return session
 }
 
-export async function createSession(data: NewGameSession): Promise<GameSession> {
+export async function createSession(
+  data: NewGameSession
+): Promise<GameSession> {
   const userId = await requireAuth()
 
   const [session] = await db
@@ -78,7 +96,10 @@ export async function createSession(data: NewGameSession): Promise<GameSession> 
   return session
 }
 
-export async function updateSession(id: string, data: Partial<NewGameSession>): Promise<GameSession> {
+export async function updateSession(
+  id: string,
+  data: Partial<NewGameSession>
+): Promise<GameSession> {
   const userId = await requireAuth()
 
   const [session] = await db
@@ -110,7 +131,9 @@ export async function deleteSession(id: string): Promise<void> {
 }
 
 // Session Notes CRUD
-export async function getSessionNotes(sessionId: string): Promise<SessionNote[]> {
+export async function getSessionNotes(
+  sessionId: string
+): Promise<SessionNote[]> {
   await requireAuth()
 
   return db
@@ -120,13 +143,12 @@ export async function getSessionNotes(sessionId: string): Promise<SessionNote[]>
     .orderBy(sessionNotes.timestamp)
 }
 
-export async function addSessionNote(data: NewSessionNote): Promise<SessionNote> {
+export async function addSessionNote(
+  data: NewSessionNote
+): Promise<SessionNote> {
   await requireAuth()
 
-  const [note] = await db
-    .insert(sessionNotes)
-    .values(data)
-    .returning()
+  const [note] = await db.insert(sessionNotes).values(data).returning()
 
   revalidatePath(`/sessions/${data.sessionId}`)
   return note
@@ -135,9 +157,7 @@ export async function addSessionNote(data: NewSessionNote): Promise<SessionNote>
 export async function deleteSessionNote(id: string): Promise<void> {
   await requireAuth()
 
-  await db
-    .delete(sessionNotes)
-    .where(eq(sessionNotes.id, id))
+  await db.delete(sessionNotes).where(eq(sessionNotes.id, id))
 }
 
 // Plot Threads CRUD
@@ -151,17 +171,26 @@ export async function fetchUserPlotThreads(): Promise<PlotThread[]> {
     .orderBy(plotThreads.createdAt)
 }
 
-export async function getPlotThreadsByCampaign(campaignId: string): Promise<PlotThread[]> {
+export async function getPlotThreadsByCampaign(
+  campaignId: string
+): Promise<PlotThread[]> {
   const userId = await requireAuth()
 
   return db
     .select()
     .from(plotThreads)
-    .where(and(eq(plotThreads.campaignId, campaignId), eq(plotThreads.userId, userId)))
+    .where(
+      and(
+        eq(plotThreads.campaignId, campaignId),
+        eq(plotThreads.userId, userId)
+      )
+    )
     .orderBy(plotThreads.createdAt)
 }
 
-export async function createPlotThread(data: NewPlotThread): Promise<PlotThread> {
+export async function createPlotThread(
+  data: NewPlotThread
+): Promise<PlotThread> {
   const userId = await requireAuth()
 
   const [thread] = await db
@@ -176,7 +205,10 @@ export async function createPlotThread(data: NewPlotThread): Promise<PlotThread>
   return thread
 }
 
-export async function updatePlotThread(id: string, data: Partial<NewPlotThread>): Promise<PlotThread> {
+export async function updatePlotThread(
+  id: string,
+  data: Partial<NewPlotThread>
+): Promise<PlotThread> {
   const userId = await requireAuth()
 
   const [thread] = await db

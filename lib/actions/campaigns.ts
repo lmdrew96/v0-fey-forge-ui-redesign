@@ -7,7 +7,10 @@ import { eq, and } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
 export type Campaign = typeof campaigns.$inferSelect
-export type NewCampaign = Omit<typeof campaigns.$inferInsert, "id" | "userId" | "createdAt" | "updatedAt">
+export type NewCampaign = Omit<
+  typeof campaigns.$inferInsert,
+  "id" | "userId" | "createdAt" | "updatedAt"
+>
 
 async function requireAuth() {
   const session = await auth()
@@ -62,7 +65,10 @@ export async function createCampaign(data: NewCampaign): Promise<Campaign> {
   return campaign
 }
 
-export async function updateCampaign(id: string, data: Partial<NewCampaign>): Promise<Campaign> {
+export async function updateCampaign(
+  id: string,
+  data: Partial<NewCampaign>
+): Promise<Campaign> {
   const userId = await requireAuth()
 
   const [campaign] = await db

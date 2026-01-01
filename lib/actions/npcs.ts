@@ -7,7 +7,10 @@ import { eq, and, ilike, or } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
 export type NPC = typeof npcs.$inferSelect
-export type NewNPC = Omit<typeof npcs.$inferInsert, "id" | "userId" | "createdAt" | "updatedAt">
+export type NewNPC = Omit<
+  typeof npcs.$inferInsert,
+  "id" | "userId" | "createdAt" | "updatedAt"
+>
 
 async function requireAuth() {
   const session = await auth()
@@ -58,7 +61,10 @@ export async function getNPC(id: string): Promise<NPC | undefined> {
   return npc
 }
 
-export async function searchNPCs(query: string, campaignId?: string): Promise<NPC[]> {
+export async function searchNPCs(
+  query: string,
+  campaignId?: string
+): Promise<NPC[]> {
   const userId = await getAuthUserId()
   if (!userId) return []
 
@@ -73,7 +79,9 @@ export async function searchNPCs(query: string, campaignId?: string): Promise<NP
     return db
       .select()
       .from(npcs)
-      .where(and(baseCondition, eq(npcs.campaignId, campaignId), searchCondition))
+      .where(
+        and(baseCondition, eq(npcs.campaignId, campaignId), searchCondition)
+      )
       .orderBy(npcs.name)
   }
 
@@ -99,7 +107,10 @@ export async function createNPC(data: NewNPC): Promise<NPC> {
   return npc
 }
 
-export async function updateNPC(id: string, data: Partial<NewNPC>): Promise<NPC> {
+export async function updateNPC(
+  id: string,
+  data: Partial<NewNPC>
+): Promise<NPC> {
   const userId = await requireAuth()
 
   const [npc] = await db
@@ -123,9 +134,7 @@ export async function updateNPC(id: string, data: Partial<NewNPC>): Promise<NPC>
 export async function deleteNPC(id: string): Promise<void> {
   const userId = await requireAuth()
 
-  await db
-    .delete(npcs)
-    .where(and(eq(npcs.id, id), eq(npcs.userId, userId)))
+  await db.delete(npcs).where(and(eq(npcs.id, id), eq(npcs.userId, userId)))
 
   revalidatePath("/npcs")
 }

@@ -8,8 +8,14 @@ import { revalidatePath } from "next/cache"
 
 export type Character = typeof characters.$inferSelect
 export type CharacterProperty = typeof characterProperties.$inferSelect
-export type NewCharacter = Omit<typeof characters.$inferInsert, "id" | "userId" | "createdAt" | "updatedAt">
-export type NewCharacterProperty = Omit<typeof characterProperties.$inferInsert, "id" | "createdAt" | "updatedAt">
+export type NewCharacter = Omit<
+  typeof characters.$inferInsert,
+  "id" | "userId" | "createdAt" | "updatedAt"
+>
+export type NewCharacterProperty = Omit<
+  typeof characterProperties.$inferInsert,
+  "id" | "createdAt" | "updatedAt"
+>
 
 async function requireAuth() {
   const session = await auth()
@@ -37,14 +43,18 @@ export async function fetchUserCharacters(): Promise<Character[]> {
     .orderBy(characters.updatedAt)
 }
 
-export async function getCharactersByCampaign(campaignId: string): Promise<Character[]> {
+export async function getCharactersByCampaign(
+  campaignId: string
+): Promise<Character[]> {
   const userId = await getAuthUserId()
   if (!userId) return []
 
   return db
     .select()
     .from(characters)
-    .where(and(eq(characters.campaignId, campaignId), eq(characters.userId, userId)))
+    .where(
+      and(eq(characters.campaignId, campaignId), eq(characters.userId, userId))
+    )
     .orderBy(characters.name)
 }
 
@@ -76,7 +86,10 @@ export async function createCharacter(data: NewCharacter): Promise<Character> {
   return character
 }
 
-export async function updateCharacter(id: string, data: Partial<NewCharacter>): Promise<Character> {
+export async function updateCharacter(
+  id: string,
+  data: Partial<NewCharacter>
+): Promise<Character> {
   const userId = await requireAuth()
 
   const [character] = await db
@@ -108,7 +121,9 @@ export async function deleteCharacter(id: string): Promise<void> {
 }
 
 // Character Properties CRUD
-export async function getCharacterProperties(characterId: string): Promise<CharacterProperty[]> {
+export async function getCharacterProperties(
+  characterId: string
+): Promise<CharacterProperty[]> {
   await requireAuth()
 
   return db
@@ -118,7 +133,9 @@ export async function getCharacterProperties(characterId: string): Promise<Chara
     .orderBy(characterProperties.orderIndex)
 }
 
-export async function addCharacterProperty(data: NewCharacterProperty): Promise<CharacterProperty> {
+export async function addCharacterProperty(
+  data: NewCharacterProperty
+): Promise<CharacterProperty> {
   await requireAuth()
 
   const [property] = await db
@@ -162,9 +179,7 @@ export async function deleteCharacterProperty(id: string): Promise<void> {
     .where(eq(characterProperties.id, id))
     .limit(1)
 
-  await db
-    .delete(characterProperties)
-    .where(eq(characterProperties.id, id))
+  await db.delete(characterProperties).where(eq(characterProperties.id, id))
 
   if (property) {
     revalidatePath(`/characters/${property.characterId}`)
