@@ -52,7 +52,7 @@ export function CampaignSelector() {
     try {
       const newId = await createCampaign({
         name: newCampaignName.trim(),
-        description: newCampaignDescription.trim() || null,
+        description: newCampaignDescription.trim() || "",
         isActive: true,
       })
       setActiveCampaign(newId)
