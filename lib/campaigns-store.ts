@@ -20,19 +20,12 @@ interface CampaignsStore {
   getActiveCampaign: () => Campaign | undefined
 }
 
-const sampleCampaign: Campaign = {
-  id: "campaign-1",
-  name: "The Feywild Chronicles",
-  description: "A journey through the mystical Feywild, where reality bends and ancient powers stir.",
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-}
-
 export const useCampaignsStore = create<CampaignsStore>()(
   persist(
     (set, get) => ({
-      campaigns: [sampleCampaign],
-      activeCampaignId: "campaign-1",
+      // Start with empty array - sample data removed for production
+      campaigns: [],
+      activeCampaignId: null,
       addCampaign: (campaign) =>
         set((state) => ({
           campaigns: [...state.campaigns, campaign],
@@ -40,13 +33,16 @@ export const useCampaignsStore = create<CampaignsStore>()(
       updateCampaign: (id, data) =>
         set((state) => ({
           campaigns: state.campaigns.map((c) =>
-            c.id === id ? { ...c, ...data, updatedAt: new Date().toISOString() } : c,
+            c.id === id
+              ? { ...c, ...data, updatedAt: new Date().toISOString() }
+              : c
           ),
         })),
       deleteCampaign: (id) =>
         set((state) => ({
           campaigns: state.campaigns.filter((c) => c.id !== id),
-          activeCampaignId: state.activeCampaignId === id ? null : state.activeCampaignId,
+          activeCampaignId:
+            state.activeCampaignId === id ? null : state.activeCampaignId,
         })),
       setActiveCampaign: (id) => set({ activeCampaignId: id }),
       getCampaign: (id) => get().campaigns.find((c) => c.id === id),
@@ -57,6 +53,6 @@ export const useCampaignsStore = create<CampaignsStore>()(
     }),
     {
       name: "feyforge-campaigns",
-    },
-  ),
+    }
+  )
 )

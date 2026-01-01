@@ -1,14 +1,26 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { Send, Bot, Sparkles, PanelLeftClose, PanelLeft, Plus, Trash2, History } from "lucide-react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import {
+  Send,
+  Bot,
+  Sparkles,
+  PanelLeftClose,
+  PanelLeft,
+  Plus,
+  Trash2,
+  History,
+} from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { useDMAssistantStore, getSimulatedResponse } from "@/lib/dm-assistant-store"
+import { useDMAssistantStore } from "@/lib/dm-assistant-store"
 import { useCampaignStore } from "@/lib/campaign-store"
-import { useActiveCampaignId, useActiveCampaign } from "@/lib/hooks/use-campaign-data"
+import {
+  useActiveCampaignId,
+  useActiveCampaign,
+} from "@/lib/hooks/use-campaign-data"
 import { ChatMessages } from "./chat-messages"
 import { QuickPrompts } from "./quick-prompts"
 import { ChatHistory } from "./chat-history"
@@ -61,7 +73,7 @@ export function DMAssistant() {
     textareaRef.current?.focus()
   }, [])
 
-  const handleSend = async () => {
+  const handleSend = useCallback(async () => {
     if (!input.trim() || isLoading || !activeCampaignId) return
 
     let conversationId = activeConversationId
@@ -82,15 +94,96 @@ export function DMAssistant() {
     setInput("")
     setLoading(true)
 
-    // Simulate AI response (replace with actual API call later)
-    setTimeout(() => {
+    try {
+      // Get current conversation messages for context
+      const conversation = useDMAssistantStore
+        .getState()
+        .conversations.find((c) => c.id === conversationId)
+      const conversationMessages = conversation?.messages || []
+
+      // Build messages array for API
+      const apiMessages = conversationMessages.map((msg) => ({
+        id: msg.id,
+        role: msg.role as "user" | "assistant",
+        content: msg.content,
+      }))
+
+      // Call the real API
+      const response = await fetch("/api/dm-assistant", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: apiMessages,
+          context: activeCampaign?.description || undefined,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to get response")
+      }
+
+      // Handle streaming response
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      let assistantContent = ""
+
+      // Add an initial empty assistant message that we'll update
+      const assistantMsgId = Date.now().toString()
       addMessage(conversationId!, {
         role: "assistant",
-        content: getSimulatedResponse(userInput),
+        content: "",
       })
+
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+
+          const chunk = decoder.decode(value, { stream: true })
+          // Parse SSE format - each chunk may contain multiple events
+          const lines = chunk.split("\n")
+          for (const line of lines) {
+            if (line.startsWith("0:")) {
+              // Text content - extract the JSON string and parse it
+              try {
+                const jsonStr = line.slice(2)
+                const text = JSON.parse(jsonStr)
+                if (typeof text === "string") {
+                  assistantContent += text
+                  // Update the last message with new content
+                  useDMAssistantStore
+                    .getState()
+                    .updateLastMessage(conversationId!, assistantContent)
+                }
+              } catch {
+                // Ignore parse errors for non-text chunks
+              }
+            }
+          }
+        }
+      }
+    } catch (error) {
+      // Add error message
+      addMessage(conversationId!, {
+        role: "assistant",
+        content:
+          "I apologize, but I encountered an error processing your request. Please try again.",
+      })
+    } finally {
       setLoading(false)
-    }, 800 + Math.random() * 700)
-  }
+    }
+  }, [
+    input,
+    isLoading,
+    activeCampaignId,
+    activeConversationId,
+    activeCampaign,
+    createConversation,
+    addMessage,
+    setLoading,
+  ])
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -201,9 +294,12 @@ export function DMAssistant() {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Clear this conversation?</AlertDialogTitle>
+                    <AlertDialogTitle>
+                      Clear this conversation?
+                    </AlertDialogTitle>
                     <AlertDialogDescription>
-                      This will permanently delete all messages in this chat. This action cannot be undone.
+                      This will permanently delete all messages in this chat.
+                      This action cannot be undone.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -237,8 +333,9 @@ export function DMAssistant() {
                 Greetings, Dungeon Master
               </h3>
               <p className="text-sm text-muted-foreground max-w-md mb-6">
-                I'm your AI-powered assistant, ready to help with plot hooks, NPC ideas,
-                encounter balancing, rules clarifications, and more. What shall we create?
+                I'm your AI-powered assistant, ready to help with plot hooks,
+                NPC ideas, encounter balancing, rules clarifications, and more.
+                What shall we create?
               </p>
               <QuickPrompts onSelectPrompt={handleQuickPrompt} />
             </div>

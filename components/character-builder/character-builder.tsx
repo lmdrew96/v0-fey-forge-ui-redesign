@@ -15,6 +15,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { AppShell } from "@/components/app-shell"
 import { ArrowLeft, ArrowRight, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import type {
+  Character,
+  ItemProperty,
+  Skill,
+  Ability,
+} from "@/lib/character/types"
 
 const TOTAL_STEPS = 5
 
@@ -28,7 +34,8 @@ const stepTitles = [
 
 export function CharacterBuilder() {
   const router = useRouter()
-  const { currentStep, setStep, character, resetCharacter } = useCharacterBuilderStore()
+  const { currentStep, setStep, character, resetCharacter } =
+    useCharacterBuilderStore()
   const addCharacter = useCharacterStore((s) => s.addCharacter)
   const activeCampaignId = useActiveCampaignId()
 
@@ -41,7 +48,10 @@ export function CharacterBuilder() {
       case 3:
         return true
       case 4:
-        return character.equipmentChoice === "gold" || character.selectedEquipment.length > 0
+        return (
+          character.equipmentChoice === "gold" ||
+          character.selectedEquipment.length > 0
+        )
       case 5:
         return true
       default:
@@ -64,11 +74,11 @@ export function CharacterBuilder() {
   const handleComplete = async () => {
     // Generate a unique ID for the new character
     const newId = `char-${Date.now()}`
-    
+
     // Calculate initial HP based on class hit die (assume d8 for now + CON mod)
     const conMod = Math.floor((character.abilities.constitution - 10) / 2)
     const initialHP = 8 + conMod // Level 1 max HP
-    
+
     // Transform character builder data to FeyForge Character format
     const newCharacter = {
       id: newId,
@@ -81,45 +91,48 @@ export function CharacterBuilder() {
       experiencePoints: 0,
       background: character.background || undefined,
       alignment: character.alignment || undefined,
-      
-      // FeyForge uses baseAbilities with different property names
+
+      // Base ability scores using full property names
       baseAbilities: {
-        str: character.abilities.strength,
-        dex: character.abilities.dexterity,
-        con: character.abilities.constitution,
-        int: character.abilities.intelligence,
-        wis: character.abilities.wisdom,
-        cha: character.abilities.charisma,
+        strength: character.abilities.strength,
+        dexterity: character.abilities.dexterity,
+        constitution: character.abilities.constitution,
+        intelligence: character.abilities.intelligence,
+        wisdom: character.abilities.wisdom,
+        charisma: character.abilities.charisma,
       },
-      
+
       // Combat stats
       hitPoints: {
         current: initialHP,
         max: initialHP,
         temp: 0,
       },
-      hitDice: [{
-        dieType: 8,
-        total: 1,
-        used: 0,
-        classSource: character.characterClass,
-      }],
+      hitDice: [
+        {
+          dieType: 8,
+          total: 1,
+          used: 0,
+          classSource: character.characterClass,
+        },
+      ],
       deathSaves: {
         successes: 0,
         failures: 0,
       },
       speed: 30,
       inspiration: false,
-      
-      // Proficiencies - cast to appropriate types
-      savingThrowProficiencies: [] as string[],
-      skillProficiencies: [...character.skillProficiencies] as string[],
-      skillExpertise: [] as string[],
-      armorProficiencies: [],
-      weaponProficiencies: [],
+
+      // Proficiencies - Note: skillProficiencies stores display names for UI compatibility
+      // The Skill type expects camelCase keys but we store display names
+      savingThrowProficiencies: [] as Ability[],
+      skillProficiencies: character.skillProficiencies as unknown as Skill[],
+      skillExpertise: [] as Skill[],
+      armorProficiencies: [] as string[],
+      weaponProficiencies: [] as string[],
       toolProficiencies: [...character.toolProficiencies],
       languages: [...character.languages],
-      
+
       // Currency
       currency: {
         cp: 0,
@@ -128,30 +141,32 @@ export function CharacterBuilder() {
         gp: character.equipmentChoice === "gold" ? character.startingGold : 0,
         pp: 0,
       },
-      
-      // Properties (equipment stored as properties in FeyForge)
-      properties: character.selectedEquipment.map((name, index) => ({
-        id: `item-${newId}-${index}`,
-        type: 'item' as const,
-        name,
-        description: '',
-        active: true,
-        category: 'gear' as const,
-        equipped: false,
-        quantity: 1,
-        weight: 0,
-        modifiers: [],
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      })),
-      
+
+      // Properties (equipment stored as ItemProperty in properties array)
+      properties: character.selectedEquipment.map(
+        (name, index): ItemProperty => ({
+          id: `item-${newId}-${index}`,
+          type: "item",
+          name,
+          description: "",
+          active: true,
+          category: "gear",
+          equipped: false,
+          quantity: 1,
+          weight: 0,
+          modifiers: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        })
+      ),
+
       // Personality
       personalityTraits: character.personalityTraits || "",
       ideals: character.ideals || "",
       bonds: character.bonds || "",
       flaws: character.flaws || "",
       backstory: character.backstory || "",
-      
+
       // Physical characteristics
       age: character.age || undefined,
       height: character.height || undefined,
@@ -160,19 +175,19 @@ export function CharacterBuilder() {
       skin: character.skin || undefined,
       hair: character.hair || undefined,
       imageUrl: character.imageUrl || undefined,
-      
+
       // Metadata
       createdAt: new Date(),
       updatedAt: new Date(),
-    }
-    
+    } satisfies Omit<Character, "imageUrl"> & { imageUrl?: string }
+
     try {
       // Add character to the store (async)
-      await addCharacter(newCharacter as any)
-      
+      await addCharacter(newCharacter as Character)
+
       // Reset the builder
       resetCharacter()
-      
+
       // Navigate to the new character's sheet
       router.push(`/characters/${newId}`)
     } catch (error) {
@@ -203,7 +218,10 @@ export function CharacterBuilder() {
         {/* Progress */}
         <div className="bg-card/50 border-b border-border w-full">
           <div className="px-4 max-w-7xl mx-auto">
-            <ProgressIndicator currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+            <ProgressIndicator
+              currentStep={currentStep}
+              totalSteps={TOTAL_STEPS}
+            />
           </div>
         </div>
 
@@ -212,7 +230,9 @@ export function CharacterBuilder() {
           <Card className="bg-card/80 backdrop-blur-sm border-2 border-border shadow-xl w-full">
             <CardContent className="p-3 sm:p-4 md:p-8 w-full max-w-full overflow-x-hidden">
               {/* Step Title */}
-              <h2 className="text-lg font-semibold text-fey-gold mb-6">{stepTitles[currentStep - 1]}</h2>
+              <h2 className="text-lg font-semibold text-fey-gold mb-6">
+                {stepTitles[currentStep - 1]}
+              </h2>
 
               {renderStep()}
             </CardContent>
@@ -230,7 +250,7 @@ export function CharacterBuilder() {
                   "h-10 sm:h-12 px-3 sm:px-4 border-2",
                   currentStep === 1
                     ? "border-border text-muted-foreground"
-                    : "border-fey-purple text-fey-purple hover:bg-fey-purple/10",
+                    : "border-fey-purple text-fey-purple hover:bg-fey-purple/10"
                 )}
               >
                 <ArrowLeft className="h-4 w-4 sm:mr-2" />
@@ -248,7 +268,7 @@ export function CharacterBuilder() {
                         ? "w-4 sm:w-6 bg-fey-cyan"
                         : i + 1 < currentStep
                           ? "bg-fey-cyan"
-                          : "bg-secondary",
+                          : "bg-secondary"
                     )}
                   />
                 ))}
@@ -262,7 +282,7 @@ export function CharacterBuilder() {
                     "h-10 sm:h-12 px-3 sm:px-4",
                     canProceed()
                       ? "bg-fey-cyan hover:bg-fey-cyan/90 text-accent-foreground"
-                      : "bg-secondary text-muted-foreground",
+                      : "bg-secondary text-muted-foreground"
                   )}
                 >
                   <span className="hidden sm:inline">Next</span>

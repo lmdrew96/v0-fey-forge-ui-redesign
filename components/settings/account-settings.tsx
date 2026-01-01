@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { signOut } from "next-auth/react"
 import {
   UserCircle,
   Mail,
@@ -13,7 +14,13 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -185,36 +192,59 @@ export function AccountSettings() {
     }
   }
 
-  const handleDeleteAccount = () => {
-    // In a real app, this would be an API call to delete the account
-    // For now, clear all data and show a message
-    const STORAGE_KEYS = [
-      "feyforge-campaigns",
-      "feyforge-characters",
-      "feyforge-npcs",
-      "feyforge-sessions",
-      "feyforge-combat",
-      "feyforge-dice-store",
-      "feyforge-dm-assistant",
-      "feyforge-codex",
-      "feyforge-world-map",
-      "feyforge-font-size",
-      PROFILE_STORAGE_KEY,
-    ]
+  const handleDeleteAccount = async () => {
+    setIsSaving(true)
+    setSaveStatus({ type: null, message: "" })
 
-    for (const key of STORAGE_KEYS) {
-      localStorage.removeItem(key)
+    try {
+      // Call API to delete user account from database
+      const response = await fetch("/api/auth/delete-account", {
+        method: "DELETE",
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Failed to delete account")
+      }
+
+      // Clear all localStorage data
+      const STORAGE_KEYS = [
+        "feyforge-campaigns",
+        "feyforge-characters",
+        "feyforge-npcs",
+        "feyforge-sessions",
+        "feyforge-combat",
+        "feyforge-dice-store",
+        "feyforge-dm-assistant",
+        "feyforge-codex",
+        "feyforge-world-map",
+        "feyforge-font-size",
+        PROFILE_STORAGE_KEY,
+      ]
+
+      for (const key of STORAGE_KEYS) {
+        localStorage.removeItem(key)
+      }
+
+      setShowDeleteConfirm(false)
+      setDeleteConfirmText("")
+
+      // Sign out and redirect to home page
+      await signOut({ callbackUrl: "/" })
+    } catch (error) {
+      setSaveStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to delete account. Please try again.",
+      })
+      setIsSaving(false)
     }
-
-    setShowDeleteConfirm(false)
-    setDeleteConfirmText("")
-    setSaveStatus({
-      type: "success",
-      message: "Account deleted. Please refresh the page.",
-    })
   }
 
-  const canDeleteAccount = deleteConfirmText.toLowerCase() === "delete my account"
+  const canDeleteAccount =
+    deleteConfirmText.toLowerCase() === "delete my account"
 
   const getInitials = (name: string) => {
     if (!name) return "FF"
@@ -235,14 +265,19 @@ export function AccountSettings() {
             <UserCircle className="h-5 w-5 text-fey-cyan" />
             Profile Information
           </CardTitle>
-          <CardDescription>Manage your personal information and avatar</CardDescription>
+          <CardDescription>
+            Manage your personal information and avatar
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Avatar Section */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <div className="relative group">
               <Avatar className="h-24 w-24 border-2 border-border">
-                <AvatarImage src={profile.avatarUrl} alt={profile.displayName} />
+                <AvatarImage
+                  src={profile.avatarUrl}
+                  alt={profile.displayName}
+                />
                 <AvatarFallback className="text-xl bg-muted">
                   {getInitials(profile.displayName)}
                 </AvatarFallback>
@@ -278,7 +313,9 @@ export function AccountSettings() {
               <Input
                 id="displayName"
                 value={profile.displayName}
-                onChange={(e) => handleProfileChange("displayName", e.target.value)}
+                onChange={(e) =>
+                  handleProfileChange("displayName", e.target.value)
+                }
                 placeholder="Your name"
                 className="bg-card border-border/50"
               />
@@ -299,7 +336,11 @@ export function AccountSettings() {
             </div>
           </div>
 
-          <Button onClick={handleSaveProfile} disabled={isSaving} className="w-full sm:w-auto">
+          <Button
+            onClick={handleSaveProfile}
+            disabled={isSaving}
+            className="w-full sm:w-auto"
+          >
             {isSaving ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -316,7 +357,10 @@ export function AccountSettings() {
       </Card>
 
       {/* Change Password */}
-      <Collapsible open={showPasswordSection} onOpenChange={setShowPasswordSection}>
+      <Collapsible
+        open={showPasswordSection}
+        onOpenChange={setShowPasswordSection}
+      >
         <Card className="bg-card/50 border-border/50">
           <CardHeader>
             <CollapsibleTrigger asChild>
@@ -326,7 +370,9 @@ export function AccountSettings() {
                     <Lock className="h-5 w-5 text-fey-purple" />
                     Change Password
                   </CardTitle>
-                  <CardDescription>Update your account password</CardDescription>
+                  <CardDescription>
+                    Update your account password
+                  </CardDescription>
                 </div>
                 <span className="text-sm text-muted-foreground">
                   {showPasswordSection ? "Hide" : "Show"}
@@ -362,7 +408,9 @@ export function AccountSettings() {
                   </button>
                 </div>
                 {passwordErrors.current && (
-                  <p className="text-sm text-destructive">{passwordErrors.current}</p>
+                  <p className="text-sm text-destructive">
+                    {passwordErrors.current}
+                  </p>
                 )}
               </div>
 
@@ -392,7 +440,9 @@ export function AccountSettings() {
                   </button>
                 </div>
                 {passwordErrors.new && (
-                  <p className="text-sm text-destructive">{passwordErrors.new}</p>
+                  <p className="text-sm text-destructive">
+                    {passwordErrors.new}
+                  </p>
                 )}
                 <p className="text-xs text-muted-foreground">
                   Password must be at least 8 characters long
@@ -412,7 +462,9 @@ export function AccountSettings() {
                   }`}
                 />
                 {passwordErrors.confirm && (
-                  <p className="text-sm text-destructive">{passwordErrors.confirm}</p>
+                  <p className="text-sm text-destructive">
+                    {passwordErrors.confirm}
+                  </p>
                 )}
               </div>
 
@@ -488,8 +540,9 @@ export function AccountSettings() {
                   Delete Account
                 </h4>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Once you delete your account, there is no going back. All your data, including
-                  campaigns, characters, NPCs, and session logs will be permanently deleted.
+                  Once you delete your account, there is no going back. All your
+                  data, including campaigns, characters, NPCs, and session logs
+                  will be permanently deleted.
                 </p>
                 <Button
                   variant="destructive"
@@ -515,7 +568,8 @@ export function AccountSettings() {
             </AlertDialogTitle>
             <AlertDialogDescription className="space-y-4">
               <span className="block">
-                This action will permanently delete your account and all associated data:
+                This action will permanently delete your account and all
+                associated data:
               </span>
               <ul className="list-disc list-inside space-y-1 text-sm">
                 <li>Your profile information</li>
@@ -527,7 +581,8 @@ export function AccountSettings() {
                 This action cannot be undone!
               </span>
               <span className="block mt-4">
-                To confirm, type <strong>&quot;delete my account&quot;</strong> below:
+                To confirm, type <strong>&quot;delete my account&quot;</strong>{" "}
+                below:
               </span>
             </AlertDialogDescription>
           </AlertDialogHeader>

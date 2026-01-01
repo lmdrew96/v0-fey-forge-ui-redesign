@@ -5,18 +5,25 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
-import type { Character, CharacterUpdateInput, ItemProperty, CalculatedStats } from "@/lib/character/types"
+import type {
+  Character,
+  CharacterUpdateInput,
+  ItemProperty,
+  CalculatedStats,
+  CharacterProperty,
+} from "@/lib/character/types"
 import { Backpack, Coins, Plus, Trash2, Weight } from "lucide-react"
 import { useState } from "react"
 
-// Simple equipment item for UI compatibility
-// TODO: Migrate to use ItemProperty from character.properties
+// Simple equipment item for UI display and editing
 interface SimpleEquipmentItem {
+  id: string // ItemProperty id for reference
   name: string
   quantity: number
   weight: number
-  equipped?: boolean
-  attuned?: boolean
+  equipped: boolean
+  attuned: boolean
+  requiresAttunement: boolean
 }
 
 interface InventoryPanelProps {
@@ -26,58 +33,102 @@ interface InventoryPanelProps {
   onUpdate: (data: CharacterUpdateInput) => void
 }
 
-// Helper to extract equipment from properties or use fallback
+// Helper to extract equipment from properties (ItemProperty type)
 function getEquipment(character: Character): SimpleEquipmentItem[] {
-  const itemProperties = character.properties?.filter(
-    (p): p is ItemProperty => p.type === 'item'
-  ) ?? []
-  
-  if (itemProperties.length > 0) {
-    return itemProperties.map(item => ({
-      name: item.name,
-      quantity: item.quantity ?? 1,
-      weight: item.weight ?? 0,
-      equipped: item.equipped ?? false,
-      attuned: item.attunement?.attuned ?? false
-    }))
-  }
-  
-  // Fallback to legacy equipment array if it exists
-  return (character as any).equipment ?? []
+  const itemProperties =
+    character.properties?.filter((p): p is ItemProperty => p.type === "item") ??
+    []
+
+  return itemProperties.map((item) => ({
+    id: item.id,
+    name: item.name,
+    quantity: item.quantity ?? 1,
+    weight: item.weight ?? 0,
+    equipped: item.equipped ?? false,
+    attuned: item.attuned ?? item.attunement?.attuned ?? false,
+    requiresAttunement: item.requiresAttunement ?? false,
+  }))
 }
 
-export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate }: InventoryPanelProps) {
+export function InventoryPanel({
+  character,
+  calculatedStats,
+  isEditing,
+  onUpdate,
+}: InventoryPanelProps) {
   const equipment = getEquipment(character)
   const [newItem, setNewItem] = useState({ name: "", quantity: 1, weight: 0 })
 
-  const totalWeight = equipment.reduce((sum, item) => sum + item.weight * item.quantity, 0)
-  const carryCapacity = calculatedStats?.carryingCapacity ?? (character.baseAbilities.strength * 15)
+  const totalWeight = equipment.reduce(
+    (sum, item) => sum + item.weight * item.quantity,
+    0
+  )
+  const carryCapacity =
+    calculatedStats?.carryingCapacity ?? character.baseAbilities.strength * 15
 
+  // Create a new ItemProperty for the item in the properties array
   const addItem = () => {
     if (newItem.name.trim()) {
-      onUpdate({
-        equipment: [...equipment, { ...newItem, name: newItem.name.trim(), equipped: false }],
-      })
+      const newItemProperty: ItemProperty = {
+        id: crypto.randomUUID(),
+        type: "item",
+        name: newItem.name.trim(),
+        category: "gear",
+        active: true,
+        equipped: false,
+        quantity: newItem.quantity,
+        weight: newItem.weight,
+        modifiers: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+
+      const updatedProperties = [
+        ...(character.properties ?? []),
+        newItemProperty,
+      ]
+      onUpdate({ properties: updatedProperties })
       setNewItem({ name: "", quantity: 1, weight: 0 })
     }
   }
 
-  const removeItem = (index: number) => {
-    onUpdate({
-      equipment: equipment.filter((_, i) => i !== index),
+  // Remove an ItemProperty from the properties array by id
+  const removeItem = (itemId: string) => {
+    const updatedProperties = (character.properties ?? []).filter(
+      (p) => p.id !== itemId
+    )
+    onUpdate({ properties: updatedProperties })
+  }
+
+  // Toggle equipped status on an ItemProperty
+  const toggleEquipped = (itemId: string) => {
+    const updatedProperties = (character.properties ?? []).map((p) => {
+      if (p.id !== itemId || p.type !== "item") return p
+      const itemProp = p as ItemProperty
+      return {
+        ...itemProp,
+        equipped: !itemProp.equipped,
+        updatedAt: new Date(),
+      }
     })
+    onUpdate({ properties: updatedProperties as CharacterProperty[] })
   }
 
-  const toggleEquipped = (index: number) => {
-    const updated = [...equipment]
-    updated[index] = { ...updated[index], equipped: !updated[index].equipped }
-    onUpdate({ equipment: updated })
-  }
-
-  const toggleAttuned = (index: number) => {
-    const updated = [...equipment]
-    updated[index] = { ...updated[index], attuned: !updated[index].attuned }
-    onUpdate({ equipment: updated })
+  // Toggle attuned status on an ItemProperty
+  const toggleAttuned = (itemId: string) => {
+    const updatedProperties = (character.properties ?? []).map((p) => {
+      if (p.id !== itemId || p.type !== "item") return p
+      const itemProp = p as ItemProperty
+      const currentlyAttuned =
+        itemProp.attuned ?? itemProp.attunement?.attuned ?? false
+      return {
+        ...itemProp,
+        attuned: !currentlyAttuned,
+        attunement: { attuned: !currentlyAttuned },
+        updatedAt: new Date(),
+      }
+    })
+    onUpdate({ properties: updatedProperties as CharacterProperty[] })
   }
 
   const updateCurrency = (type: keyof Character["currency"], value: number) => {
@@ -105,7 +156,13 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
         </h2>
         <div className="flex items-center gap-2 text-sm">
           <Weight className="h-4 w-4 text-muted-foreground shrink-0" />
-          <span className={totalWeight > carryCapacity ? "text-destructive" : "text-muted-foreground"}>
+          <span
+            className={
+              totalWeight > carryCapacity
+                ? "text-destructive"
+                : "text-muted-foreground"
+            }
+          >
             {totalWeight}/{carryCapacity} lbs
           </span>
         </div>
@@ -125,12 +182,16 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
                 <Input
                   type="number"
                   value={character.currency[key]}
-                  onChange={(e) => updateCurrency(key, Number.parseInt(e.target.value) || 0)}
+                  onChange={(e) =>
+                    updateCurrency(key, Number.parseInt(e.target.value) || 0)
+                  }
                   className="w-14 sm:w-16 h-7 text-sm text-center"
                   min={0}
                 />
               ) : (
-                <span className="text-sm font-medium">{character.currency[key]}</span>
+                <span className="text-sm font-medium">
+                  {character.currency[key]}
+                </span>
               )}
             </div>
           ))}
@@ -139,21 +200,26 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
 
       {/* Attunement indicator */}
       <div className="mb-3 text-sm text-muted-foreground">
-        Attuned: <span className={attunedCount >= 3 ? "text-fey-gold font-semibold" : ""}>{attunedCount}/3</span>
+        Attuned:{" "}
+        <span
+          className={attunedCount >= 3 ? "text-fey-gold font-semibold" : ""}
+        >
+          {attunedCount}/3
+        </span>
       </div>
 
       {/* Equipment List */}
       <div className="space-y-1">
-        {equipment.map((item, index) => (
+        {equipment.map((item) => (
           <div
-            key={index}
+            key={item.id}
             className={`flex items-center gap-2 p-2 rounded-lg transition-colors min-w-0 ${
               item.equipped ? "bg-fey-forest/10" : "hover:bg-background/50"
             }`}
           >
             <Checkbox
               checked={item.equipped}
-              onCheckedChange={() => toggleEquipped(index)}
+              onCheckedChange={() => toggleEquipped(item.id)}
               className="data-[state=checked]:bg-fey-forest data-[state=checked]:border-fey-forest shrink-0"
               aria-label={`${item.name} equipped`}
             />
@@ -165,23 +231,28 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
                   {item.name}
                 </span>
                 {item.attuned && (
-                  <Badge variant="outline" className="text-xs border-fey-purple text-fey-purple shrink-0">
+                  <Badge
+                    variant="outline"
+                    className="text-xs border-fey-purple text-fey-purple shrink-0"
+                  >
                     Attuned
                   </Badge>
                 )}
               </div>
             </div>
-            <span className="text-xs text-muted-foreground shrink-0">x{item.quantity}</span>
+            <span className="text-xs text-muted-foreground shrink-0">
+              x{item.quantity}
+            </span>
             <span className="text-xs text-muted-foreground shrink-0 w-10 sm:w-12 text-right hidden xs:inline">
               {item.weight} lb
             </span>
             {isEditing && (
               <>
-                {item.attuned !== undefined && (
+                {item.requiresAttunement && (
                   <Button
                     size="sm"
                     variant={item.attuned ? "default" : "outline"}
-                    onClick={() => toggleAttuned(index)}
+                    onClick={() => toggleAttuned(item.id)}
                     className="h-6 text-xs shrink-0 hidden sm:inline-flex"
                     disabled={!item.attuned && attunedCount >= 3}
                   >
@@ -191,7 +262,7 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
                 <Button
                   size="icon"
                   variant="ghost"
-                  onClick={() => removeItem(index)}
+                  onClick={() => removeItem(item.id)}
                   className="h-6 w-6 text-destructive hover:text-destructive shrink-0"
                 >
                   <Trash2 className="h-3 w-3" />
@@ -202,7 +273,9 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
         ))}
 
         {equipment.length === 0 && (
-          <p className="text-sm text-muted-foreground text-center py-4">No items in inventory</p>
+          <p className="text-sm text-muted-foreground text-center py-4">
+            No items in inventory
+          </p>
         )}
 
         {/* Add Item Form */}
@@ -219,7 +292,12 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
               type="number"
               placeholder="Qty"
               value={newItem.quantity}
-              onChange={(e) => setNewItem({ ...newItem, quantity: Number.parseInt(e.target.value) || 1 })}
+              onChange={(e) =>
+                setNewItem({
+                  ...newItem,
+                  quantity: Number.parseInt(e.target.value) || 1,
+                })
+              }
               className="w-12 sm:w-14 h-8 text-sm text-center"
               min={1}
             />
@@ -227,12 +305,22 @@ export function InventoryPanel({ character, calculatedStats, isEditing, onUpdate
               type="number"
               placeholder="Wt"
               value={newItem.weight}
-              onChange={(e) => setNewItem({ ...newItem, weight: Number.parseFloat(e.target.value) || 0 })}
+              onChange={(e) =>
+                setNewItem({
+                  ...newItem,
+                  weight: Number.parseFloat(e.target.value) || 0,
+                })
+              }
               className="w-12 sm:w-16 h-8 text-sm text-center"
               min={0}
               step={0.1}
             />
-            <Button size="icon" onClick={addItem} className="h-8 w-8 bg-fey-forest hover:bg-fey-forest/80 shrink-0" aria-label="Add item">
+            <Button
+              size="icon"
+              onClick={addItem}
+              className="h-8 w-8 bg-fey-forest hover:bg-fey-forest/80 shrink-0"
+              aria-label="Add item"
+            >
               <Plus className="h-4 w-4" />
             </Button>
           </div>

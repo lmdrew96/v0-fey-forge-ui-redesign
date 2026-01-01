@@ -5,7 +5,13 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { signIn } from "next-auth/react"
 import { Sparkles, Mail, Lock, Eye, EyeOff, Loader2, Wand2 } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -33,13 +39,13 @@ export function LoginForm() {
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
   const [isMagicLinkLoading, setIsMagicLinkLoading] = useState(false)
   const [magicLinkSent, setMagicLinkSent] = useState(false)
-  
+
   const [formData, setFormData] = useState<FormState>({
     email: "",
     password: "",
     magicLinkEmail: "",
   })
-  
+
   const [errors, setErrors] = useState<FormErrors>({})
 
   const validateEmail = (email: string): boolean => {
@@ -57,34 +63,34 @@ export function LoginForm() {
 
   const handlePasswordLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const newErrors: FormErrors = {}
-    
+
     if (!formData.email) {
       newErrors.email = "Email is required"
     } else if (!validateEmail(formData.email)) {
       newErrors.email = "Please enter a valid email address"
     }
-    
+
     if (!formData.password) {
       newErrors.password = "Password is required"
     }
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
       return
     }
-    
+
     setIsLoading(true)
     setErrors({})
-    
+
     try {
       const result = await signIn("credentials", {
         email: formData.email,
         password: formData.password,
         redirect: false,
       })
-      
+
       if (result?.error) {
         setErrors({ general: "Invalid email or password. Please try again." })
       } else {
@@ -92,7 +98,9 @@ export function LoginForm() {
         router.refresh()
       }
     } catch {
-      setErrors({ general: "Login failed. Please check your credentials and try again." })
+      setErrors({
+        general: "Login failed. Please check your credentials and try again.",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -101,7 +109,7 @@ export function LoginForm() {
   const handleGoogleLogin = async () => {
     setIsGoogleLoading(true)
     setErrors({})
-    
+
     try {
       await signIn("google", { callbackUrl: "/" })
     } catch {
@@ -113,30 +121,46 @@ export function LoginForm() {
 
   const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const newErrors: FormErrors = {}
-    
+
     if (!formData.magicLinkEmail) {
       newErrors.magicLinkEmail = "Email is required"
     } else if (!validateEmail(formData.magicLinkEmail)) {
       newErrors.magicLinkEmail = "Please enter a valid email address"
     }
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
       return
     }
-    
+
     setIsMagicLinkLoading(true)
     setErrors({})
-    
+
     try {
-      // Simulate magic link send - replace with actual logic
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch("/api/auth/magic-link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: formData.magicLinkEmail }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send magic link")
+      }
+
       setMagicLinkSent(true)
-      
-    } catch {
-      setErrors({ general: "Failed to send magic link. Please try again." })
+    } catch (error) {
+      setErrors({
+        general:
+          error instanceof Error
+            ? error.message
+            : "Failed to send magic link. Please try again.",
+      })
     } finally {
       setIsMagicLinkLoading(false)
     }
@@ -207,7 +231,9 @@ export function LoginForm() {
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={formData.password}
-                  onChange={(e) => handleInputChange("password", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("password", e.target.value)
+                  }
                   disabled={isLoading}
                   aria-invalid={!!errors.password}
                   className={`pr-10 ${errors.password ? "border-destructive" : ""}`}
@@ -264,7 +290,9 @@ export function LoginForm() {
               <div className="text-center space-y-4">
                 <div className="p-4 rounded-lg bg-fey-cyan/10 border border-fey-cyan/20">
                   <Wand2 className="h-8 w-8 text-fey-cyan mx-auto mb-2" />
-                  <p className="text-foreground font-medium">Magic link sent!</p>
+                  <p className="text-foreground font-medium">
+                    Magic link sent!
+                  </p>
                   <p className="text-sm text-muted-foreground mt-1">
                     Check your email for a link to sign in
                   </p>
@@ -280,7 +308,10 @@ export function LoginForm() {
             ) : (
               <form onSubmit={handleMagicLink} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="magic-email" className="flex items-center gap-2">
+                  <Label
+                    htmlFor="magic-email"
+                    className="flex items-center gap-2"
+                  >
                     <Mail className="h-4 w-4 text-muted-foreground" />
                     Email
                   </Label>
@@ -289,18 +320,25 @@ export function LoginForm() {
                     type="email"
                     placeholder="Enter your email"
                     value={formData.magicLinkEmail}
-                    onChange={(e) => handleInputChange("magicLinkEmail", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("magicLinkEmail", e.target.value)
+                    }
                     disabled={isMagicLinkLoading}
                     aria-invalid={!!errors.magicLinkEmail}
-                    className={errors.magicLinkEmail ? "border-destructive" : ""}
+                    className={
+                      errors.magicLinkEmail ? "border-destructive" : ""
+                    }
                   />
                   {errors.magicLinkEmail && (
-                    <p className="text-sm text-destructive">{errors.magicLinkEmail}</p>
+                    <p className="text-sm text-destructive">
+                      {errors.magicLinkEmail}
+                    </p>
                   )}
                 </div>
 
                 <p className="text-sm text-muted-foreground">
-                  We&apos;ll email you a magic link to sign in without a password
+                  We&apos;ll email you a magic link to sign in without a
+                  password
                 </p>
 
                 <Button

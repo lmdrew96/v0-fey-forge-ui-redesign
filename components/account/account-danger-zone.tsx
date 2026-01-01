@@ -1,8 +1,21 @@
 "use client"
 
 import { useState } from "react"
-import { AlertTriangle, Trash2, ChevronDown, ChevronUp } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { signOut } from "next-auth/react"
+import {
+  AlertTriangle,
+  Trash2,
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+} from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -42,23 +55,42 @@ export function AccountDangerZone() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [confirmText, setConfirmText] = useState("")
   const [step, setStep] = useState<1 | 2>(1)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
 
-  const handleDeleteAccount = () => {
-    // Clear all localStorage data
-    STORAGE_KEYS.forEach((key) => {
-      localStorage.removeItem(key)
-    })
+  const handleDeleteAccount = async () => {
+    setIsDeleting(true)
+    setDeleteError(null)
 
-    // Reset state
-    setShowDeleteDialog(false)
-    setConfirmText("")
-    setStep(1)
+    try {
+      // Call API to delete user account from database
+      const response = await fetch("/api/auth/delete-account", {
+        method: "DELETE",
+      })
 
-    // In a real app, this would also:
-    // - Call API to delete user account
-    // - Clear auth tokens
-    // - Redirect to login/home page
-    window.location.href = "/"
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Failed to delete account")
+      }
+
+      // Clear all localStorage data
+      STORAGE_KEYS.forEach((key) => {
+        localStorage.removeItem(key)
+      })
+
+      // Reset dialog state
+      setShowDeleteDialog(false)
+      setConfirmText("")
+      setStep(1)
+
+      // Sign out and redirect to home page
+      await signOut({ callbackUrl: "/" })
+    } catch (error) {
+      setDeleteError(
+        error instanceof Error ? error.message : "Failed to delete account"
+      )
+      setIsDeleting(false)
+    }
   }
 
   const handleCloseDialog = () => {
@@ -104,8 +136,8 @@ export function AccountDangerZone() {
                       Delete Account
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      Permanently delete your account and all associated data. This action
-                      cannot be undone.
+                      Permanently delete your account and all associated data.
+                      This action cannot be undone.
                     </p>
                   </div>
                   <Button
@@ -135,8 +167,8 @@ export function AccountDangerZone() {
                 {step === 1 ? (
                   <>
                     <p>
-                      This will permanently delete your account and all associated data,
-                      including:
+                      This will permanently delete your account and all
+                      associated data, including:
                     </p>
                     <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
                       <li>All campaigns</li>
@@ -146,7 +178,8 @@ export function AccountDangerZone() {
                       <li>All saved settings</li>
                     </ul>
                     <p className="font-medium text-foreground">
-                      This action is irreversible. Are you sure you want to continue?
+                      This action is irreversible. Are you sure you want to
+                      continue?
                     </p>
                   </>
                 ) : (
@@ -169,30 +202,45 @@ export function AccountDangerZone() {
                         placeholder={CONFIRMATION_TEXT}
                         className="bg-background border-red-500/30 focus:border-red-500"
                         autoComplete="off"
+                        disabled={isDeleting}
                       />
                     </div>
+                    {deleteError && (
+                      <p className="text-sm text-red-500 bg-red-500/10 p-2 rounded">
+                        {deleteError}
+                      </p>
+                    )}
                   </>
                 )}
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-            <AlertDialogCancel onClick={handleCloseDialog}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel
+              onClick={handleCloseDialog}
+              disabled={isDeleting}
+            >
+              Cancel
+            </AlertDialogCancel>
             {step === 1 ? (
-              <Button
-                variant="destructive"
-                onClick={() => setStep(2)}
-              >
+              <Button variant="destructive" onClick={() => setStep(2)}>
                 Continue
               </Button>
             ) : (
-              <AlertDialogAction
+              <Button
                 onClick={handleDeleteAccount}
-                disabled={!canProceedToStep2}
+                disabled={!canProceedToStep2 || isDeleting}
                 className="bg-red-500 hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Delete My Account Forever
-              </AlertDialogAction>
+                {isDeleting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    Deleting...
+                  </>
+                ) : (
+                  "Delete My Account Forever"
+                )}
+              </Button>
             )}
           </AlertDialogFooter>
         </AlertDialogContent>

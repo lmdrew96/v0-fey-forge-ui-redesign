@@ -6,7 +6,13 @@ import { ArrowLeft, Mail, Loader2, CheckCircle, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { FloatingParticles } from "@/components/floating-particles"
 
 export default function ForgotPasswordPage() {
@@ -31,11 +37,31 @@ export default function ForgotPasswordPage() {
 
     setIsLoading(true)
 
-    // Simulate API call - will be replaced with actual auth flow
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      })
 
-    setIsLoading(false)
-    setIsSubmitted(true)
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send reset link")
+      }
+
+      setIsSubmitted(true)
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to send reset link. Please try again."
+      )
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -62,7 +88,9 @@ export default function ForgotPasswordPage() {
                 <Sparkles className="h-8 w-8 text-fey-gold" />
               </div>
             </div>
-            <CardTitle className="text-2xl font-display">Reset Password</CardTitle>
+            <CardTitle className="text-2xl font-display">
+              Reset Password
+            </CardTitle>
             <CardDescription>
               {isSubmitted
                 ? "Check your email for a reset link"
@@ -77,8 +105,9 @@ export default function ForgotPasswordPage() {
                   <CheckCircle className="h-8 w-8 text-fey-forest mx-auto mb-2" />
                   <p className="text-foreground font-medium">Email sent!</p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    If an account exists for <span className="font-medium">{email}</span>, 
-                    you&apos;ll receive a password reset link shortly.
+                    If an account exists for{" "}
+                    <span className="font-medium">{email}</span>, you&apos;ll
+                    receive a password reset link shortly.
                   </p>
                 </div>
                 <p className="text-xs text-muted-foreground">

@@ -141,7 +141,14 @@ const sampleCharacter: Character = {
     wisdom: 16,
     charisma: 8,
   },
-  skillProficiencies: ["Perception", "Stealth", "Survival", "Nature", "Athletics", "Animal Handling"],
+  skillProficiencies: [
+    "Perception",
+    "Stealth",
+    "Survival",
+    "Nature",
+    "Athletics",
+    "Animal Handling",
+  ],
   savingThrowProficiencies: ["Strength", "Dexterity"],
   toolProficiencies: ["Herbalism Kit"],
   languages: ["Common", "Elvish", "Sylvan"],
@@ -164,11 +171,33 @@ const sampleCharacter: Character = {
     failures: 0,
   },
   attacks: [
-    { name: "Longbow", attackBonus: 7, damage: "1d8+4", damageType: "Piercing" },
-    { name: "Shortsword", attackBonus: 7, damage: "1d6+4", damageType: "Piercing" },
-    { name: "Shortsword (Off-hand)", attackBonus: 7, damage: "1d6", damageType: "Piercing" },
+    {
+      name: "Longbow",
+      attackBonus: 7,
+      damage: "1d8+4",
+      damageType: "Piercing",
+    },
+    {
+      name: "Shortsword",
+      attackBonus: 7,
+      damage: "1d6+4",
+      damageType: "Piercing",
+    },
+    {
+      name: "Shortsword (Off-hand)",
+      attackBonus: 7,
+      damage: "1d6",
+      damageType: "Piercing",
+    },
   ],
-  racialTraits: ["Darkvision", "Fey Ancestry", "Trance", "Keen Senses", "Mask of the Wild", "Fleet of Foot"],
+  racialTraits: [
+    "Darkvision",
+    "Fey Ancestry",
+    "Trance",
+    "Keen Senses",
+    "Mask of the Wild",
+    "Fleet of Foot",
+  ],
   classFeatures: [
     "Favored Enemy: Beasts, Fey",
     "Natural Explorer: Forest",
@@ -187,7 +216,13 @@ const sampleCharacter: Character = {
     { name: "Arrows", quantity: 40, weight: 2, equipped: false },
     { name: "Explorer's Pack", quantity: 1, weight: 59, equipped: false },
     { name: "Hunting Trap", quantity: 1, weight: 25, equipped: false },
-    { name: "Cloak of Elvenkind", quantity: 1, weight: 1, equipped: true, attuned: true },
+    {
+      name: "Cloak of Elvenkind",
+      quantity: 1,
+      weight: 1,
+      equipped: true,
+      attuned: true,
+    },
   ],
   currency: {
     cp: 15,
@@ -209,14 +244,21 @@ const sampleCharacter: Character = {
       { name: "Cure Wounds", level: 1, prepared: true },
       { name: "Fog Cloud", level: 1, prepared: false },
       { name: "Goodberry", level: 1, prepared: true, ritual: false },
-      { name: "Pass Without Trace", level: 2, prepared: true, concentration: true },
+      {
+        name: "Pass Without Trace",
+        level: 2,
+        prepared: true,
+        concentration: true,
+      },
       { name: "Spike Growth", level: 2, prepared: true, concentration: true },
     ],
   },
   personalityTraits:
     "I watch over my friends as if they were a litter of newborn pups. I feel far more comfortable around animals than people.",
-  ideals: "Nature. The natural world is more important than all the constructs of civilization.",
-  bonds: "I will bring terrible wrath down on the evildoers who destroyed my homeland.",
+  ideals:
+    "Nature. The natural world is more important than all the constructs of civilization.",
+  bonds:
+    "I will bring terrible wrath down on the evildoers who destroyed my homeland.",
   flaws: "I am slow to trust members of other races, tribes, and societies.",
   backstory:
     "Born in the ancient Whisperwind Grove, Lyralei trained as a guardian of the forest from a young age. When a dark force corrupted her homeland, she set out to find allies and the power to restore what was lost.",
@@ -234,7 +276,8 @@ const sampleCharacter: Character = {
 export const useCharactersStore = create<CharactersStore>()(
   persist(
     (set, get) => ({
-      characters: [sampleCharacter],
+      // Start with empty array - sample data removed for production
+      characters: [],
       addCharacter: (character) =>
         set((state) => ({
           characters: [...state.characters, character],
@@ -242,7 +285,9 @@ export const useCharactersStore = create<CharactersStore>()(
       updateCharacter: (id, data) =>
         set((state) => ({
           characters: state.characters.map((c) =>
-            c.id === id ? { ...c, ...data, updatedAt: new Date().toISOString() } : c,
+            c.id === id
+              ? { ...c, ...data, updatedAt: new Date().toISOString() }
+              : c
           ),
         })),
       deleteCharacter: (id) =>
@@ -253,6 +298,6 @@ export const useCharactersStore = create<CharactersStore>()(
     }),
     {
       name: "feyforge-characters",
-    },
-  ),
+    }
+  )
 )
