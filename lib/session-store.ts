@@ -1,6 +1,7 @@
 "use client"
 
 import { create } from "zustand"
+import { toast } from "sonner"
 import {
   fetchUserSessions,
   getSessionsByCampaign,
@@ -202,6 +203,12 @@ export const useSessionStore = create<SessionStore>((set, get) => ({
       // For now, the server action handles persistence
     } catch (error) {
       console.error("Failed to add note:", error)
+      const message = error instanceof Error ? error.message : "Failed to add note"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to add notes")
+      } else {
+        toast.error(message)
+      }
       throw error
     }
   },

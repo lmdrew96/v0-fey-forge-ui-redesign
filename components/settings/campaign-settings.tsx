@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { Plus, Pencil, Trash2, Check, Crown, X } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -50,7 +56,8 @@ export function CampaignSettings() {
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [editingCampaign, setEditingCampaign] = useState<Campaign | null>(null)
-  const [deleteConfirmCampaign, setDeleteConfirmCampaign] = useState<Campaign | null>(null)
+  const [deleteConfirmCampaign, setDeleteConfirmCampaign] =
+    useState<Campaign | null>(null)
 
   // Form state for add/edit
   const [formName, setFormName] = useState("")
@@ -102,7 +109,8 @@ export function CampaignSettings() {
       closeDialogs()
     } catch (error) {
       console.error("Failed to create campaign:", error)
-      const message = error instanceof Error ? error.message : "Failed to create campaign"
+      const message =
+        error instanceof Error ? error.message : "Failed to create campaign"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to create a campaign")
       } else {
@@ -122,7 +130,8 @@ export function CampaignSettings() {
       closeDialogs()
     } catch (error) {
       console.error("Failed to update campaign:", error)
-      const message = error instanceof Error ? error.message : "Failed to update campaign"
+      const message =
+        error instanceof Error ? error.message : "Failed to update campaign"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to update campaigns")
       } else {
@@ -133,13 +142,14 @@ export function CampaignSettings() {
 
   const handleDeleteCampaign = async () => {
     if (!deleteConfirmCampaign) return
-    
+
     try {
       await deleteCampaign(deleteConfirmCampaign.id)
       setDeleteConfirmCampaign(null)
     } catch (error) {
       console.error("Failed to delete campaign:", error)
-      const message = error instanceof Error ? error.message : "Failed to delete campaign"
+      const message =
+        error instanceof Error ? error.message : "Failed to delete campaign"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to delete campaigns")
       } else {
@@ -178,7 +188,9 @@ export function CampaignSettings() {
             <div className="text-center py-8 text-muted-foreground">
               <Crown className="h-12 w-12 mx-auto mb-4 opacity-30" />
               <p className="font-medium">No campaigns yet</p>
-              <p className="text-sm mt-1">Create your first campaign to get started</p>
+              <p className="text-sm mt-1">
+                Create your first campaign to get started
+              </p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -195,9 +207,14 @@ export function CampaignSettings() {
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-medium truncate">{campaign.name}</h3>
+                        <h3 className="font-medium truncate">
+                          {campaign.name}
+                        </h3>
                         {isActive && (
-                          <Badge variant="outline" className="text-fey-cyan border-fey-cyan/50">
+                          <Badge
+                            variant="outline"
+                            className="text-fey-cyan border-fey-cyan/50"
+                          >
                             Active
                           </Badge>
                         )}
@@ -208,7 +225,10 @@ export function CampaignSettings() {
                         </p>
                       )}
                       <p className="text-xs text-muted-foreground mt-1">
-                        Created {campaign.createdAt ? new Date(campaign.createdAt).toLocaleDateString() : "Unknown"}
+                        Created{" "}
+                        {campaign.createdAt
+                          ? new Date(campaign.createdAt).toLocaleDateString()
+                          : "Unknown"}
                       </p>
                     </div>
 
@@ -297,13 +317,14 @@ export function CampaignSettings() {
       </Dialog>
 
       {/* Edit Campaign Dialog */}
-      <Dialog open={!!editingCampaign} onOpenChange={(open) => !open && closeDialogs()}>
+      <Dialog
+        open={!!editingCampaign}
+        onOpenChange={(open) => !open && closeDialogs()}
+      >
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Edit Campaign</DialogTitle>
-            <DialogDescription>
-              Update your campaign details.
-            </DialogDescription>
+            <DialogDescription>Update your campaign details.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
@@ -352,9 +373,10 @@ export function CampaignSettings() {
               Delete Campaign?
             </AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete &quot;{deleteConfirmCampaign?.name}&quot;? This action
-              cannot be undone. All associated data will remain but will no longer be linked
-              to this campaign.
+              Are you sure you want to delete &quot;
+              {deleteConfirmCampaign?.name}&quot;? This action cannot be undone.
+              All associated data will remain but will no longer be linked to
+              this campaign.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

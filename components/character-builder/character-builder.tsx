@@ -188,7 +188,8 @@ export function CharacterBuilder() {
       router.push(`/characters/${newId}`)
     } catch (error) {
       console.error("Failed to create character:", error)
-      const message = error instanceof Error ? error.message : "Failed to create character"
+      const message =
+        error instanceof Error ? error.message : "Failed to create character"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to create a character")
       } else {

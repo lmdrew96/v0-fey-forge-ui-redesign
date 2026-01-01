@@ -62,7 +62,8 @@ export function CampaignSelector() {
       setNewCampaignDescription("")
     } catch (error) {
       console.error("Failed to create campaign:", error)
-      const message = error instanceof Error ? error.message : "Failed to create campaign"
+      const message =
+        error instanceof Error ? error.message : "Failed to create campaign"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to create a campaign")
       } else {

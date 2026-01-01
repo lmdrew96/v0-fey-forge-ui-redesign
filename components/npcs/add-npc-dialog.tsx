@@ -52,7 +52,9 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
   const [backstory, setBackstory] = useState("")
   const [location, setLocation] = useState("")
   const [faction, setFaction] = useState("")
-  const [relationship, setRelationship] = useState<"friendly" | "neutral" | "hostile">("neutral")
+  const [relationship, setRelationship] = useState<
+    "friendly" | "neutral" | "hostile"
+  >("neutral")
   const [status, setStatus] = useState<"alive" | "dead" | "unknown">("alive")
 
   const resetForm = () => {
@@ -77,15 +79,19 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!name.trim() || !occupation.trim() || !race.trim() || !location.trim()) return
+
+    if (!name.trim() || !occupation.trim() || !race.trim() || !location.trim())
+      return
     if (!activeCampaignId) return
 
     setIsSubmitting(true)
 
     try {
       // Parse personality traits from comma-separated input
-      const personalityTraits = personalityInput.split(",").map(t => t.trim()).filter(Boolean)
+      const personalityTraits = personalityInput
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean)
 
       await addNPC({
         campaignId: activeCampaignId,
@@ -96,7 +102,8 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
         gender: gender.trim() || "Unknown",
         alignment: alignment,
         appearance: appearance.trim() || "No description",
-        personality: personalityTraits.length > 0 ? personalityTraits : ["Unknown"],
+        personality:
+          personalityTraits.length > 0 ? personalityTraits : ["Unknown"],
         mannerisms: mannerisms.trim() || "None noted",
         voiceDescription: voiceDescription.trim() || "No description",
         motivation: motivation.trim() || "Unknown",
@@ -115,7 +122,8 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
       setOpen(false)
     } catch (error) {
       console.error("Failed to add NPC:", error)
-      const message = error instanceof Error ? error.message : "Failed to add NPC"
+      const message =
+        error instanceof Error ? error.message : "Failed to add NPC"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to add NPCs")
       } else {
@@ -126,7 +134,12 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
     }
   }
 
-  const isFormValid = name.trim() && occupation.trim() && race.trim() && location.trim() && activeCampaignId
+  const isFormValid =
+    name.trim() &&
+    occupation.trim() &&
+    race.trim() &&
+    location.trim() &&
+    activeCampaignId
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -237,9 +250,13 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
                     <SelectItem value="lawful good">Lawful Good</SelectItem>
                     <SelectItem value="neutral good">Neutral Good</SelectItem>
                     <SelectItem value="chaotic good">Chaotic Good</SelectItem>
-                    <SelectItem value="lawful neutral">Lawful Neutral</SelectItem>
+                    <SelectItem value="lawful neutral">
+                      Lawful Neutral
+                    </SelectItem>
                     <SelectItem value="neutral">True Neutral</SelectItem>
-                    <SelectItem value="chaotic neutral">Chaotic Neutral</SelectItem>
+                    <SelectItem value="chaotic neutral">
+                      Chaotic Neutral
+                    </SelectItem>
                     <SelectItem value="lawful evil">Lawful Evil</SelectItem>
                     <SelectItem value="neutral evil">Neutral Evil</SelectItem>
                     <SelectItem value="chaotic evil">Chaotic Evil</SelectItem>
@@ -262,8 +279,16 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="npc-relationship">Relationship</Label>
-                <Select value={relationship} onValueChange={(v) => setRelationship(v as "friendly" | "neutral" | "hostile")}>
-                  <SelectTrigger id="npc-relationship" className="bg-background">
+                <Select
+                  value={relationship}
+                  onValueChange={(v) =>
+                    setRelationship(v as "friendly" | "neutral" | "hostile")
+                  }
+                >
+                  <SelectTrigger
+                    id="npc-relationship"
+                    className="bg-background"
+                  >
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
                   <SelectContent>
@@ -275,7 +300,12 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="npc-status">Status</Label>
-                <Select value={status} onValueChange={(v) => setStatus(v as "alive" | "dead" | "unknown")}>
+                <Select
+                  value={status}
+                  onValueChange={(v) =>
+                    setStatus(v as "alive" | "dead" | "unknown")
+                  }
+                >
                   <SelectTrigger id="npc-status" className="bg-background">
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
@@ -302,7 +332,9 @@ export function AddNPCDialog({ trigger }: AddNPCDialogProps) {
 
             {/* Personality Traits */}
             <div className="space-y-2">
-              <Label htmlFor="npc-personality">Personality Traits (comma-separated)</Label>
+              <Label htmlFor="npc-personality">
+                Personality Traits (comma-separated)
+              </Label>
               <Input
                 id="npc-personality"
                 placeholder="e.g., Grumpy, Honest, Generous"

@@ -17,7 +17,10 @@ import {
 } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useSessionStore } from "@/lib/session-store"
-import { useCampaignSessions, useActiveCampaignId } from "@/lib/hooks/use-campaign-data"
+import {
+  useCampaignSessions,
+  useActiveCampaignId,
+} from "@/lib/hooks/use-campaign-data"
 import { toast } from "sonner"
 
 interface AddSessionDialogProps {
@@ -113,7 +116,8 @@ export function AddSessionDialog({ trigger }: AddSessionDialogProps) {
       setOpen(false)
     } catch (error) {
       console.error("Failed to add session:", error)
-      const message = error instanceof Error ? error.message : "Failed to add session"
+      const message =
+        error instanceof Error ? error.message : "Failed to add session"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to add a session")
       } else {
@@ -149,7 +153,10 @@ export function AddSessionDialog({ trigger }: AddSessionDialogProps) {
           <form onSubmit={handleSubmit} className="space-y-4 pb-4">
             {/* Session Number Badge */}
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="bg-fey-purple/10 text-fey-purple border-fey-purple/30">
+              <Badge
+                variant="outline"
+                className="bg-fey-purple/10 text-fey-purple border-fey-purple/30"
+              >
                 Session {nextSessionNumber}
               </Badge>
             </div>
@@ -303,7 +310,10 @@ export function AddSessionDialog({ trigger }: AddSessionDialogProps) {
             {/* Prep Notes (DM only) */}
             <div className="space-y-2">
               <Label htmlFor="session-prep-notes">
-                Prep Notes <Badge variant="secondary" className="ml-2 text-[10px]">Private</Badge>
+                Prep Notes{" "}
+                <Badge variant="secondary" className="ml-2 text-[10px]">
+                  Private
+                </Badge>
               </Label>
               <Textarea
                 id="session-prep-notes"

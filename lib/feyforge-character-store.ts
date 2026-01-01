@@ -1,6 +1,7 @@
 "use client"
 
 import { create } from "zustand"
+import { toast } from "sonner"
 import type {
   Character,
   CharacterProperty,
@@ -323,11 +324,16 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       })
     } catch (error) {
       console.error("Failed to save character:", error)
+      const message = error instanceof Error ? error.message : "Failed to save character"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to save characters")
+      } else {
+        toast.error(message)
+      }
       // Rollback on error
       set((state) => ({
         characters: state.characters.filter((c) => c.id !== character.id),
-        error:
-          error instanceof Error ? error.message : "Failed to save character",
+        error: message,
       }))
     }
   },
@@ -355,10 +361,13 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       )
     } catch (error) {
       console.error("Failed to update character:", error)
-      set({
-        error:
-          error instanceof Error ? error.message : "Failed to update character",
-      })
+      const message = error instanceof Error ? error.message : "Failed to update character"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to update characters")
+      } else {
+        toast.error(message)
+      }
+      set({ error: message })
     }
   },
 
@@ -380,14 +389,17 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       await deleteCharacterAction(id)
     } catch (error) {
       console.error("Failed to delete character:", error)
+      const message = error instanceof Error ? error.message : "Failed to delete character"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to delete characters")
+      } else {
+        toast.error(message)
+      }
       // Rollback on error
       if (charToDelete) {
         set((state) => ({
           characters: [...state.characters, charToDelete],
-          error:
-            error instanceof Error
-              ? error.message
-              : "Failed to delete character",
+          error: message,
         }))
       }
     }
@@ -440,6 +452,12 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       })
     } catch (error) {
       console.error("Failed to add property:", error)
+      const message = error instanceof Error ? error.message : "Failed to add property"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to add items")
+      } else {
+        toast.error(message)
+      }
     }
   },
 
@@ -474,6 +492,12 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       })
     } catch (error) {
       console.error("Failed to update property:", error)
+      const message = error instanceof Error ? error.message : "Failed to update property"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to update items")
+      } else {
+        toast.error(message)
+      }
     }
   },
 
@@ -503,6 +527,12 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       await deletePropertyAction(propertyId)
     } catch (error) {
       console.error("Failed to remove property:", error)
+      const message = error instanceof Error ? error.message : "Failed to remove property"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to remove items")
+      } else {
+        toast.error(message)
+      }
       // Rollback on error
       if (property) {
         set((state) => ({
@@ -545,6 +575,12 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       await updatePropertyAction(propertyId, { active: !property.active })
     } catch (error) {
       console.error("Failed to toggle property:", error)
+      const message = error instanceof Error ? error.message : "Failed to toggle property"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to modify items")
+      } else {
+        toast.error(message)
+      }
     }
   },
 
@@ -1074,6 +1110,12 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
       })
     } catch (error) {
       console.error("Failed to persist character:", error)
+      const message = error instanceof Error ? error.message : "Failed to save changes"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to save changes")
+      } else {
+        toast.error(message)
+      }
     }
   },
 

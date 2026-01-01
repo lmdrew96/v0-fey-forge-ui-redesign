@@ -1,6 +1,7 @@
 "use client"
 
 import { create } from "zustand"
+import { toast } from "sonner"
 import {
   fetchUserNPCs,
   getNPCsByCampaign,
@@ -160,6 +161,12 @@ export const useNPCStore = create<NPCStore>((set, get) => ({
       return await searchNPCsAction(query, campaignId)
     } catch (error) {
       console.error("Search failed:", error)
+      const message = error instanceof Error ? error.message : "Search failed"
+      if (message.includes("Not authenticated")) {
+        toast.error("Please log in to search NPCs")
+      } else {
+        toast.error(message)
+      }
       return []
     }
   },

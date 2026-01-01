@@ -24,19 +24,29 @@ interface EditSessionDialogProps {
   onOpenChange: (open: boolean) => void
 }
 
-export function EditSessionDialog({ session, open, onOpenChange }: EditSessionDialogProps) {
+export function EditSessionDialog({
+  session,
+  open,
+  onOpenChange,
+}: EditSessionDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { updateSession } = useSessionStore()
 
   // Form state
   const [title, setTitle] = useState(session.title)
-  const [date, setDate] = useState(new Date(session.date).toISOString().split("T")[0])
+  const [date, setDate] = useState(
+    new Date(session.date).toISOString().split("T")[0]
+  )
   const [summary, setSummary] = useState(session.summary || "")
-  const [xpAwarded, setXpAwarded] = useState((session.xpAwarded || 0).toString())
+  const [xpAwarded, setXpAwarded] = useState(
+    (session.xpAwarded || 0).toString()
+  )
   const [lootInput, setLootInput] = useState("")
   const [loot, setLoot] = useState<string[]>(session.loot || [])
   const [highlightsInput, setHighlightsInput] = useState("")
-  const [highlights, setHighlights] = useState<string[]>(session.highlights || [])
+  const [highlights, setHighlights] = useState<string[]>(
+    session.highlights || []
+  )
   const [prepNotes, setPrepNotes] = useState(session.prepNotes || "")
 
   // Reset form when session changes
@@ -93,7 +103,8 @@ export function EditSessionDialog({ session, open, onOpenChange }: EditSessionDi
       onOpenChange(false)
     } catch (error) {
       console.error("Failed to update session:", error)
-      const message = error instanceof Error ? error.message : "Failed to update session"
+      const message =
+        error instanceof Error ? error.message : "Failed to update session"
       if (message.includes("Not authenticated")) {
         toast.error("Please log in to update sessions")
       } else {
@@ -120,7 +131,10 @@ export function EditSessionDialog({ session, open, onOpenChange }: EditSessionDi
           <form onSubmit={handleSubmit} className="space-y-4 pb-4">
             {/* Session Number Badge */}
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="bg-fey-purple/10 text-fey-purple border-fey-purple/30">
+              <Badge
+                variant="outline"
+                className="bg-fey-purple/10 text-fey-purple border-fey-purple/30"
+              >
                 Session {session.number}
               </Badge>
             </div>
@@ -274,7 +288,10 @@ export function EditSessionDialog({ session, open, onOpenChange }: EditSessionDi
             {/* Prep Notes (DM only) */}
             <div className="space-y-2">
               <Label htmlFor="edit-session-prep-notes">
-                Prep Notes <Badge variant="secondary" className="ml-2 text-[10px]">Private</Badge>
+                Prep Notes{" "}
+                <Badge variant="secondary" className="ml-2 text-[10px]">
+                  Private
+                </Badge>
               </Label>
               <Textarea
                 id="edit-session-prep-notes"
