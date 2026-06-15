@@ -234,7 +234,7 @@ export function JourneyCard({ planner, onClose }: { planner: JourneyPlanner; onC
     >
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">
-          <RouteIcon className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent)" }} />
+          <RouteIcon className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
           <span className="text-sm font-bold" style={{ color: "var(--scene-text-primary)" }}>
             Plan a journey
           </span>
@@ -356,7 +356,7 @@ export function JourneyCard({ planner, onClose }: { planner: JourneyPlanner; onC
                     <span className="italic">Route found — distance unknown (no map scale).</span>
                   ) : (
                     <span>
-                      <span className="font-semibold" style={{ color: "var(--scene-accent)" }}>{leg.miles.toLocaleString()} mi</span>
+                      <span className="font-semibold" style={{ color: "var(--scene-accent-2)" }}>{leg.miles.toLocaleString()} mi</span>
                       {days != null && (
                         <span style={{ color: "var(--scene-text-primary)" }}> · {days} {days === 1 ? "day" : "days"}</span>
                       )}
@@ -378,7 +378,7 @@ export function JourneyCard({ planner, onClose }: { planner: JourneyPlanner; onC
               <span className="font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>
                 Total
               </span>
-              <span className="font-bold" style={{ color: "var(--scene-accent)" }}>
+              <span className="font-bold" style={{ color: "var(--scene-accent-2)" }}>
                 {totalMiles.toLocaleString()} mi · {totalDays} {totalDays === 1 ? "day" : "days"}
               </span>
             </div>

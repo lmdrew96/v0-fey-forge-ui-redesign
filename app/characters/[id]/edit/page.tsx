@@ -228,7 +228,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
           <Link
             href="/characters"
             className="text-sm hover:opacity-80 transition-opacity"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             ← Back to characters
           </Link>
@@ -683,7 +683,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-opacity hover:opacity-80"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
               }}
               title="Roll height & weight on the 5e chart for this race"
@@ -831,7 +831,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
                   className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md transition-opacity hover:opacity-80 disabled:opacity-50"
                   style={{
                     background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-                    color: "var(--scene-accent)",
+                    color: "var(--scene-accent-2)",
                     border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
                   }}
                   title="Generate a backstory from your character's details"
@@ -862,7 +862,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
                 className="shrink-0 inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md transition-opacity hover:opacity-80 disabled:opacity-50"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
                 }}
               >
@@ -879,7 +879,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
 
         <FieldGroup title="Level-up advisor">
           <div className="flex items-start gap-3">
-            <Wand2 className="h-5 w-5 mt-0.5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+            <Wand2 className="h-5 w-5 mt-0.5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
             <div className="flex-1 min-w-0">
               <p className="text-sm" style={{ color: "var(--scene-text-primary)" }}>
                 Get ASI, feat, and multiclass recommendations tailored to{" "}
@@ -896,7 +896,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
               className="shrink-0 inline-flex items-center gap-1.5 text-sm px-3 py-2 rounded-md transition-opacity hover:opacity-80 disabled:opacity-50"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
               }}
             >
@@ -1129,7 +1129,7 @@ export default function CharacterEditPage({ params }: { params: Promise<{ id: st
                       className="text-xs uppercase tracking-widest px-2 py-0.5 rounded-full"
                       style={{
                         background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)",
-                        color: "var(--scene-accent)",
+                        color: "var(--scene-accent-2)",
                       }}
                     >
                       {rec.type}

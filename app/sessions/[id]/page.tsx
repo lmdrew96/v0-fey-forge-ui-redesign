@@ -277,7 +277,7 @@ export default function SessionDetailPage({
           <Link
             href="/sessions"
             className="text-sm hover:opacity-80 transition-opacity"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             ← Back to sessions
           </Link>
@@ -417,7 +417,7 @@ export default function SessionDetailPage({
 
   const aiBtnStyle = {
     background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-    color: "var(--scene-accent)",
+    color: "var(--scene-accent-2)",
     border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
   } as const
 

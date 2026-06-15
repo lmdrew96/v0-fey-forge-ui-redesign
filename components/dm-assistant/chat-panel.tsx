@@ -196,7 +196,7 @@ export function ChatPanel({
                   >
                     <Icon
                       className="mt-0.5 h-4 w-4 shrink-0"
-                      style={{ color: "var(--scene-accent)" }}
+                      style={{ color: "var(--scene-accent-2)" }}
                     />
                     <span>
                       <span
@@ -235,7 +235,7 @@ export function ChatPanel({
               <button
                 onClick={() => regenerate()}
                 className="shrink-0 font-medium underline"
-                style={{ color: "var(--scene-accent)" }}
+                style={{ color: "var(--scene-accent-2)" }}
               >
                 Retry
               </button>
@@ -308,7 +308,7 @@ function MessageBubble({ message }: { message: UIMessage }) {
         className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
         style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
       >
-        <Bot className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+        <Bot className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
       </div>
       <div
         className="max-w-[85%] rounded-2xl rounded-tl-sm px-4 py-3 text-sm"
@@ -335,7 +335,7 @@ function ThinkingBubble() {
         className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
         style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
       >
-        <Bot className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+        <Bot className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
       </div>
       <div
         className="flex items-center gap-1 rounded-2xl rounded-tl-sm px-4 py-3"

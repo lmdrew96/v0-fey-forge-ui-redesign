@@ -16,10 +16,10 @@ export function RollFeed({ sessionId }: { sessionId: Id<"partySessions"> }) {
   return (
     <section>
       <div className="flex items-center gap-2 mb-3">
-        <Dices className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+        <Dices className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
         <h2
           className="text-xs uppercase tracking-widest"
-          style={{ color: "var(--scene-accent)" }}
+          style={{ color: "var(--scene-accent-2)" }}
         >
           Rolls
         </h2>

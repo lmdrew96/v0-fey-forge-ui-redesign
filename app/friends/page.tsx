@@ -54,7 +54,7 @@ function Avatar({
           className="w-full h-full rounded-full flex items-center justify-center font-semibold"
           style={{
             background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-            color: "var(--scene-accent)",
+            color: "var(--scene-accent-2)",
           }}
         >
           {name.charAt(0).toUpperCase()}
@@ -93,7 +93,7 @@ function SectionCard({
       style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
     >
       <div className="flex items-center gap-2 mb-3">
-        <Icon className="w-4 h-4" style={{ color: "var(--scene-accent)" }} />
+        <Icon className="w-4 h-4" style={{ color: "var(--scene-accent-2)" }} />
         <h2 className="text-sm font-semibold" style={{ color: "var(--scene-text-primary)" }}>
           {title}
         </h2>
@@ -102,7 +102,7 @@ function SectionCard({
             className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full"
             style={{
               background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)",
-              color: "var(--scene-accent)",
+              color: "var(--scene-accent-2)",
             }}
           >
             {count}
@@ -166,7 +166,7 @@ function DisplayNameEditor({ current }: { current: string }) {
           className="px-3 py-2 rounded-md text-sm font-medium disabled:opacity-50"
           style={{
             background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-            color: "var(--scene-accent)",
+            color: "var(--scene-accent-2)",
             border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
           }}
         >
@@ -384,7 +384,7 @@ export default function FriendsPage() {
                 className="px-3 py-2 rounded-md text-sm font-medium disabled:opacity-50"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
                 }}
               >
@@ -412,7 +412,7 @@ export default function FriendsPage() {
                     className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-medium"
                     style={{
                       background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                      color: "var(--scene-accent)",
+                      color: "var(--scene-accent-2)",
                     }}
                   >
                     <Check className="w-3.5 h-3.5" /> Accept
@@ -460,7 +460,7 @@ export default function FriendsPage() {
                     className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-medium shrink-0"
                     style={{
                       background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                      color: "var(--scene-accent)",
+                      color: "var(--scene-accent-2)",
                     }}
                   >
                     <UserPlus className="w-3.5 h-3.5" /> Add

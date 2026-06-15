@@ -232,7 +232,7 @@ function MonsterDetail({ m }: { m: Open5eMonster }) {
                 {ABILITY_ABBREVIATIONS[a]}
               </div>
               <div className="text-sm font-bold" style={{ color: "var(--scene-text-primary)" }}>{score}</div>
-              <div className="text-xs" style={{ color: "var(--scene-accent)" }}>{formatModifier(getAbilityModifier(score))}</div>
+              <div className="text-xs" style={{ color: "var(--scene-accent-2)" }}>{formatModifier(getAbilityModifier(score))}</div>
             </div>
           )
         })}
@@ -825,7 +825,7 @@ export default function CodexPage() {
                   <button
                     onClick={() => setCache((prev) => ({ ...prev, [category]: undefined }))}
                     className="text-sm mt-2 underline hover:opacity-80"
-                    style={{ color: "var(--scene-accent)" }}
+                    style={{ color: "var(--scene-accent-2)" }}
                   >
                     Retry
                   </button>

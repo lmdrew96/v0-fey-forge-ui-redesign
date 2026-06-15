@@ -166,12 +166,12 @@ function FeatPicker({
                           {f.category}
                         </span>
                         {hasChoice && !known && (
-                          <span className="text-[10px] ml-auto flex-shrink-0" style={{ color: "var(--scene-accent)" }}>choices →</span>
+                          <span className="text-[10px] ml-auto flex-shrink-0" style={{ color: "var(--scene-accent-2)" }}>choices →</span>
                         )}
-                        {known && <Check className="h-3.5 w-3.5 ml-auto flex-shrink-0" style={{ color: "var(--scene-accent)" }} />}
+                        {known && <Check className="h-3.5 w-3.5 ml-auto flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />}
                       </div>
                       {f.prerequisite && (
-                        <div className="text-[11px] mt-0.5" style={{ color: "var(--scene-accent)" }}>Requires: {f.prerequisite}</div>
+                        <div className="text-[11px] mt-0.5" style={{ color: "var(--scene-accent-2)" }}>Requires: {f.prerequisite}</div>
                       )}
                       <div className="text-xs mt-0.5 leading-relaxed" style={{ color: "var(--scene-text-muted)" }}>{f.description}</div>
                     </button>
@@ -532,7 +532,7 @@ function LevelUpDialog({
       >
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <ChevronsUp className="h-5 w-5" style={{ color: "var(--scene-accent)" }} />
+            <ChevronsUp className="h-5 w-5" style={{ color: "var(--scene-accent-2)" }} />
             <h2 className="text-lg font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>
               Level {char.level} → {newLevel}
             </h2>
@@ -570,7 +570,7 @@ function LevelUpDialog({
             </button>
           </div>
           <p className="text-sm" style={{ color: "var(--scene-text-primary)" }}>
-            Max HP <span className="font-bold" style={{ color: "var(--scene-accent)" }}>+{hpGain}</span>
+            Max HP <span className="font-bold" style={{ color: "var(--scene-accent-2)" }}>+{hpGain}</span>
             <span style={{ color: "var(--scene-text-muted)" }}> ({hpRoll ?? avgHitDieRoll(hitDie)} {conMod >= 0 ? "+" : "−"} {Math.abs(conMod)} CON, min 1) → {char.hitPoints.max + hpGain}</span>
           </p>
         </div>
@@ -579,7 +579,7 @@ function LevelUpDialog({
         <ul className="space-y-1.5 mb-4 text-sm" style={{ color: "var(--scene-text-primary)" }}>
           <li>• A d{hitDie} hit die added (now {char.hitDice.reduce((n, d) => n + d.total, 0) + 1} total)</li>
           {profChanged && (
-            <li>• Proficiency bonus +{oldProf} → <span style={{ color: "var(--scene-accent)" }}>+{newProf}</span> (saves, skills, attacks rescale)</li>
+            <li>• Proficiency bonus +{oldProf} → <span style={{ color: "var(--scene-accent-2)" }}>+{newProf}</span> (saves, skills, attacks rescale)</li>
           )}
           {(casterType === "full" || casterType === "half" || casterType === "third") && char.spellcasting && (
             <li>• Spell slots updated for level {newLevel}{profChanged ? "; spell save DC & attack rescaled" : ""}</li>
@@ -595,7 +595,7 @@ function LevelUpDialog({
         {/* ASI vs feat — only at ASI levels */}
         {isAsi && (
           <div className="mb-4">
-            <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-accent)" }}>
+            <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-accent-2)" }}>
               Ability Score Improvement
             </div>
             <div className="flex gap-2 mb-3">
@@ -632,7 +632,7 @@ function LevelUpDialog({
                         </span>
                         <span className="text-sm tabular-nums" style={{ color: "var(--scene-text-primary)" }}>
                           {totals[a]}
-                          {add > 0 && <span style={{ color: "var(--scene-accent)" }}> → {newScore}</span>}
+                          {add > 0 && <span style={{ color: "var(--scene-accent-2)" }}> → {newScore}</span>}
                         </span>
                         <div className="ml-auto flex items-center gap-1.5">
                           <button
@@ -650,7 +650,7 @@ function LevelUpDialog({
                             onClick={() => bump(a, +1)}
                             disabled={!canInc}
                             className="w-7 h-7 rounded text-sm font-bold transition-opacity hover:opacity-80 disabled:opacity-30"
-                            style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)", color: "var(--scene-accent)" }}
+                            style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)", color: "var(--scene-accent-2)" }}
                             title={newScore >= 20 ? "Already at 20 (RAW cap)" : undefined}
                           >
                             +
@@ -664,16 +664,16 @@ function LevelUpDialog({
             ) : selectedFeat ? (
               <div className="rounded-lg p-3" style={{ background: "var(--scene-bg)", border: "1px solid var(--scene-border)" }}>
                 <div className="flex items-center gap-2">
-                  <Award className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                  <Award className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                   <span className="text-sm font-medium" style={{ color: "var(--scene-text-primary)" }}>
                     {selectedApplied?.text ? `${selectedFeat.name} (${selectedApplied.text})` : selectedFeat.name}
                   </span>
-                  <button onClick={() => setFeatPickerOpen(true)} className="ml-auto text-xs hover:opacity-80" style={{ color: "var(--scene-accent)" }}>
+                  <button onClick={() => setFeatPickerOpen(true)} className="ml-auto text-xs hover:opacity-80" style={{ color: "var(--scene-accent-2)" }}>
                     Change
                   </button>
                 </div>
                 {selectedApplied && appliedSummary(selectedApplied) && (
-                  <p className="text-[11px] mt-1 font-medium" style={{ color: "var(--scene-accent)" }}>{appliedSummary(selectedApplied)}</p>
+                  <p className="text-[11px] mt-1 font-medium" style={{ color: "var(--scene-accent-2)" }}>{appliedSummary(selectedApplied)}</p>
                 )}
                 <p className="text-xs mt-1 leading-relaxed" style={{ color: "var(--scene-text-muted)" }}>{selectedFeat.description}</p>
               </div>
@@ -681,7 +681,7 @@ function LevelUpDialog({
               <button
                 onClick={() => setFeatPickerOpen(true)}
                 className="w-full py-2 rounded-md text-sm font-medium transition-opacity hover:opacity-80"
-                style={{ background: "var(--scene-bg)", border: "1px dashed var(--scene-border)", color: "var(--scene-accent)" }}
+                style={{ background: "var(--scene-bg)", border: "1px dashed var(--scene-border)", color: "var(--scene-accent-2)" }}
               >
                 Choose a feat…
               </button>
@@ -692,7 +692,7 @@ function LevelUpDialog({
         {/* Fighting Style — Paladin/Ranger at level 2 (required choice) */}
         {needsFightingStyle && (
           <div className="mb-4">
-            <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-accent)" }}>
+            <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-accent-2)" }}>
               Fighting Style
             </div>
             <div className="flex flex-wrap gap-2">
@@ -806,7 +806,7 @@ function ExperienceCard({ char, conMod, spellAbilityMod, hitDie, edition }: { ch
   return (
     <div className="rounded-xl p-4 mb-6" style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}>
       <div className="flex items-center gap-1.5 mb-2">
-        <ChevronsUp className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+        <ChevronsUp className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
         <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Experience</span>
         <span className="ml-auto text-xs" style={{ color: "var(--scene-text-muted)" }}>
           {atMax ? "Max level" : `${xp.toLocaleString()} XP · ${toNext.toLocaleString()} to level ${char.level + 1}`}
@@ -847,7 +847,7 @@ function ExperienceCard({ char, conMod, spellAbilityMod, hitDie, edition }: { ch
             style={
               xpReady
                 ? { background: "var(--scene-accent)", color: "var(--scene-bg)" }
-                : { background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)", border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)" }
+                : { background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)", border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)" }
             }
             title={atMax ? "Already level 20" : xpReady ? "Your XP supports a higher level" : "Milestone level up"}
           >
@@ -1002,7 +1002,7 @@ function FeatsSection({
               className="flex items-start gap-3 rounded-lg px-4 py-3"
               style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
             >
-              <Award className="h-4 w-4 mt-0.5 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+              <Award className="h-4 w-4 mt-0.5 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium" style={{ color: "var(--scene-text-primary)" }}>{p.name}</p>
                 {p.description && (
@@ -1420,7 +1420,7 @@ export default function CharacterSheetPage({ params }: { params: Promise<{ id: s
       <AppShell>
         <div className="p-6 max-w-4xl mx-auto text-center">
           <p className="text-sm mb-4" style={{ color: "var(--scene-text-muted)" }}>Character not found.</p>
-          <Link href="/characters" className="text-sm hover:opacity-80 transition-opacity" style={{ color: "var(--scene-accent)" }}>
+          <Link href="/characters" className="text-sm hover:opacity-80 transition-opacity" style={{ color: "var(--scene-accent-2)" }}>
             ← Back to characters
           </Link>
         </div>
@@ -1499,7 +1499,7 @@ export default function CharacterSheetPage({ params }: { params: Promise<{ id: s
                 {raceName}{char.background ? ` · ${char.background}` : ""}
               </p>
               {char.faith?.name && (
-                <p className="text-xs mt-0.5 italic" style={{ color: "var(--scene-accent)" }}>
+                <p className="text-xs mt-0.5 italic" style={{ color: "var(--scene-accent-2)" }}>
                   {char.faith.name}{char.faith.deity ? ` · ${char.faith.deity}` : ""}
                 </p>
               )}
@@ -1760,7 +1760,7 @@ export default function CharacterSheetPage({ params }: { params: Promise<{ id: s
                     <span className="text-sm font-semibold" style={{ color: "var(--scene-text-primary)" }}>{f.name}</span>
                     <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: "var(--scene-border)", color: "var(--scene-text-muted)" }}>Lv {f.level}</span>
                     {f.uses && (
-                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in srgb, var(--scene-accent) 12%, transparent)", color: "var(--scene-accent)" }}>{f.uses}</span>
+                      <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in srgb, var(--scene-accent) 12%, transparent)", color: "var(--scene-accent-2)" }}>{f.uses}</span>
                     )}
                   </div>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--scene-text-muted)" }}>{f.description}</p>

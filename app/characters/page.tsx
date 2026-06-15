@@ -87,7 +87,7 @@ function CharacterCard({
         {character.dmControlled && (
           <span
             className="text-xs px-2 py-0.5 rounded-full font-medium"
-            style={{ background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)", color: "var(--scene-accent)" }}
+            style={{ background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)", color: "var(--scene-accent-2)" }}
             title="DM-controlled character"
           >
             DMPC

@@ -293,7 +293,7 @@ function NpcExpanded({ npc }: { npc: NpcDoc }) {
         >
           <p
             className="text-[10px] font-semibold uppercase tracking-widest mb-0.5"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             Secret · DM only
           </p>
@@ -749,7 +749,7 @@ export default function NpcsPage() {
                     className="text-xs px-2 py-0.5 rounded-full"
                     style={{
                       background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                      color: "var(--scene-accent)",
+                      color: "var(--scene-accent-2)",
                     }}
                   >
                     {npc.relationship}
@@ -814,7 +814,7 @@ export default function NpcsPage() {
                 className="inline-flex items-center gap-1.5 text-sm px-3 py-2 rounded-md transition-opacity hover:opacity-80 disabled:opacity-50"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
                 }}
               >

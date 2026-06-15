@@ -111,7 +111,7 @@ export function PinsPanel({
         {/* Header */}
         <div className="flex items-center justify-between gap-3 border-b px-4 py-3" style={{ borderColor: "var(--scene-border)" }}>
           <div className="flex items-center gap-2">
-            <ListFilter className="h-5 w-5" style={{ color: "var(--scene-accent)" }} />
+            <ListFilter className="h-5 w-5" style={{ color: "var(--scene-accent-2)" }} />
             <h2 className="text-sm font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>
               Locations
             </h2>
@@ -131,7 +131,7 @@ export function PinsPanel({
               Show on map
             </p>
             {activeKeys.size > 0 && (
-              <button onClick={onClear} className="text-[11px] font-medium hover:underline" style={{ color: "var(--scene-accent)" }}>
+              <button onClick={onClear} className="text-[11px] font-medium hover:underline" style={{ color: "var(--scene-accent-2)" }}>
                 Show all
               </button>
             )}

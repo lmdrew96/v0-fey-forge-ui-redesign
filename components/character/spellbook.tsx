@@ -230,7 +230,7 @@ export function SpellbookSection({
           <div className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--scene-text-muted)" }}>
             Spell Atk
           </div>
-          <div className="text-lg font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-accent)" }}>
+          <div className="text-lg font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-accent-2)" }}>
             {formatModifier(spellcasting.spellAttackBonus)}
           </div>
         </button>
@@ -243,7 +243,7 @@ export function SpellbookSection({
           style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
         >
           <div className="flex items-center gap-1.5 mb-3">
-            <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+            <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
             <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
               {isPact ? "Pact Magic slots" : "Spell slots"}
             </span>
@@ -253,7 +253,7 @@ export function SpellbookSection({
                 className="ml-auto inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md transition-opacity hover:opacity-80"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
                 }}
                 title="Warlock pact slots recharge on a short rest"
@@ -303,7 +303,7 @@ export function SpellbookSection({
             </span>
             <span
               className="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
-              style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)" }}
+              style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)" }}
             >
               Subclass
             </span>
@@ -315,7 +315,7 @@ export function SpellbookSection({
                 className="flex items-center gap-3 px-4 py-2"
                 style={{ borderBottom: i < grantedSpells.length - 1 ? "1px solid var(--scene-border)" : "none" }}
               >
-                <Sparkles className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                <Sparkles className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                 <span className="text-sm flex-1 capitalize" style={{ color: "var(--scene-text-primary)" }}>{g.name}</span>
                 <span className="text-xs" style={{ color: "var(--scene-text-muted)" }}>{spellLevelLabel(g.spellLevel)}</span>
               </div>
@@ -524,7 +524,7 @@ function SpellRowItem({
             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-30 flex-shrink-0"
             style={{
               background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-              color: "var(--scene-accent)",
+              color: "var(--scene-accent-2)",
               border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
             }}
             title={castableLevels.length === 0 ? "No slots available" : "Cast — choose a slot level"}
@@ -564,7 +564,7 @@ function SpellRowItem({
               className="px-2.5 py-1 rounded-md text-xs font-medium transition-opacity hover:opacity-80"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
               }}
             >
@@ -801,7 +801,7 @@ function SpellPicker({
                         </div>
                       </button>
                       {isAdded ? (
-                        <Check className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                        <Check className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                       ) : (
                         <button
                           onClick={() => handleAdd(s)}
@@ -811,7 +811,7 @@ function SpellPicker({
                           className="flex-shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-50"
                           style={{
                             background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                            color: "var(--scene-accent)",
+                            color: "var(--scene-accent-2)",
                             border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
                           }}
                         >

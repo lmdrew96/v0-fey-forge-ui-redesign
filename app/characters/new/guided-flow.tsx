@@ -332,7 +332,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
             border: "1px solid color-mix(in srgb, var(--scene-accent) 25%, var(--scene-border))",
           }}
         >
-          <p className="text-sm italic font-medium" style={{ color: "var(--scene-accent)" }}>
+          <p className="text-sm italic font-medium" style={{ color: "var(--scene-accent-2)" }}>
             &ldquo;{cls.flavorText}&rdquo;
           </p>
           <p className="text-sm" style={{ color: "var(--scene-text-muted)" }}>
@@ -486,7 +486,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
                       <span className="text-sm font-medium" style={{ color: subraceId === sr.id ? "var(--scene-highlight)" : "var(--scene-text-primary)" }}>
                         {sr.name}
                       </span>
-                      <span className="text-xs" style={{ color: "var(--scene-accent)" }}>
+                      <span className="text-xs" style={{ color: "var(--scene-accent-2)" }}>
                         {Object.entries(sr.abilityBonuses).map(([k, v]) => `+${v} ${ABILITY_ABBREVIATIONS[k as Ability]}`).join(", ")}
                       </span>
                     </div>
@@ -569,7 +569,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
       </h2>
       <p className="text-sm mb-2" style={{ color: "var(--scene-text-muted)" }}>
         Assign the six values below to your abilities. Your highest score should probably go to your primary stat
-        {cls ? <span style={{ color: "var(--scene-accent)" }}> ({cls.primaryAbility}, for {cls.name})</span> : ""}.
+        {cls ? <span style={{ color: "var(--scene-accent-2)" }}> ({cls.primaryAbility}, for {cls.name})</span> : ""}.
       </p>
       <p className="text-xs mb-6" style={{ color: "var(--scene-text-muted)" }}>
         Standard array: 15, 14, 13, 12, 10, 8 — each used exactly once. Racial bonuses are added on top.
@@ -601,7 +601,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
                     {ABILITY_ABBREVIATIONS[ability]}
                   </div>
                   {isPrimary && (
-                    <div className="text-xs" style={{ color: "var(--scene-accent)", opacity: 0.7 }}>primary</div>
+                    <div className="text-xs" style={{ color: "var(--scene-accent-2)", opacity: 0.7 }}>primary</div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -609,7 +609,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
                   <div className="text-xs leading-relaxed hidden sm:block" style={{ color: "var(--scene-text-muted)" }}>{info.long}</div>
                 </div>
                 {racial > 0 && (
-                  <span className="text-xs" style={{ color: "var(--scene-accent)" }}>+{racial} racial</span>
+                  <span className="text-xs" style={{ color: "var(--scene-accent-2)" }}>+{racial} racial</span>
                 )}
                 <select
                   value={base === 0 ? "" : base}
@@ -652,7 +652,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
         What are you good at?
       </h2>
       <p className="text-sm mb-2" style={{ color: "var(--scene-text-muted)" }}>
-        Skills are specific things your character has trained in. Choose <span style={{ color: "var(--scene-accent)" }}>{skillCount}</span> from the options your class offers.
+        Skills are specific things your character has trained in. Choose <span style={{ color: "var(--scene-accent-2)" }}>{skillCount}</span> from the options your class offers.
         Your background already gave you a few for free.
       </p>
 
@@ -822,7 +822,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
                 </div>
                 <div className="text-right">
                   <div className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Level 1</div>
-                  <div className="text-sm font-medium" style={{ color: "var(--scene-accent)" }}>
+                  <div className="text-sm font-medium" style={{ color: "var(--scene-accent-2)" }}>
                     {maxHp} HP · d{hitDie}
                   </div>
                 </div>
@@ -955,7 +955,7 @@ export function GuidedFlow({ onComplete, saving }: GuidedFlowProps) {
                 className="text-xs px-2.5 py-1 rounded-full font-medium"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border: "1px solid color-mix(in srgb, var(--scene-accent) 25%, transparent)",
                 }}
               >

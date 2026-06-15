@@ -96,7 +96,7 @@ export function SessionChatPanel({
         style={{ borderColor: "var(--scene-border)", background: "var(--scene-surface)" }}
       >
         <div className="flex min-w-0 items-center gap-2">
-          <MessagesSquare className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent)" }} />
+          <MessagesSquare className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
           <p className="truncate text-sm font-semibold" style={{ color: "var(--scene-text-primary)" }}>
             Session chat
           </p>
@@ -159,13 +159,13 @@ export function SessionChatPanel({
             <DropdownMenuContent align="start" className="z-[80] min-w-48">
               <DropdownMenuItem onSelect={() => setRecipientId(null)} className="cursor-pointer">
                 <span className="flex-1">Everyone</span>
-                {recipientId === null && <span style={{ color: "var(--scene-accent)" }}>✓</span>}
+                {recipientId === null && <span style={{ color: "var(--scene-accent-2)" }}>✓</span>}
               </DropdownMenuItem>
               {(participants ?? []).map((p) => (
                 <DropdownMenuItem key={p.userId} onSelect={() => setRecipientId(p.userId)} className="cursor-pointer">
-                  {p.isDm && <Shield className="mr-1.5 h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />}
+                  {p.isDm && <Shield className="mr-1.5 h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />}
                   <span className="flex-1 truncate">{p.name}{p.isDm ? " (DM)" : ""}</span>
-                  {recipientId === p.userId && <span style={{ color: "var(--scene-accent)" }}>✓</span>}
+                  {recipientId === p.userId && <span style={{ color: "var(--scene-accent-2)" }}>✓</span>}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

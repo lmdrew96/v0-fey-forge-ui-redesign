@@ -337,7 +337,7 @@ export default function EncounterCalculatorPage() {
           <section>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+                <Users className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
                 <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
                   Party ({party.length})
                 </h2>
@@ -346,7 +346,7 @@ export default function EncounterCalculatorPage() {
                 <button
                   onClick={loadFromCampaign}
                   className="text-xs px-2.5 py-1 rounded-md transition-opacity hover:opacity-80"
-                  style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)" }}
+                  style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)" }}
                   title="Set party to your campaign characters' levels"
                 >
                   Load from campaign
@@ -395,7 +395,7 @@ export default function EncounterCalculatorPage() {
 
             {/* ── Monsters ── */}
             <div className="flex items-center gap-2 mb-3 mt-6">
-              <Skull className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+              <Skull className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
               <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
                 Monsters
               </h2>
@@ -428,12 +428,12 @@ export default function EncounterCalculatorPage() {
                       className="flex items-center gap-2 px-3 py-2 w-full text-left transition-opacity hover:opacity-80"
                       style={{ borderBottom: "1px solid var(--scene-border)" }}
                     >
-                      <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded font-semibold flex-shrink-0" style={{ background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)", color: "var(--scene-accent)" }}>HB</span>
+                      <span className="text-[10px] uppercase tracking-wide px-1.5 py-0.5 rounded font-semibold flex-shrink-0" style={{ background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)", color: "var(--scene-accent-2)" }}>HB</span>
                       <span className="text-sm flex-1 truncate" style={{ color: "var(--scene-text-primary)" }}>{m.name}</span>
                       <span className="text-xs" style={{ color: "var(--scene-text-muted)" }}>
                         CR {m.challengeRating} · {crToXp(m.challengeRating, m.cr).toLocaleString()} XP
                       </span>
-                      <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+                      <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
                     </button>
                   ))}
                   {matches.map((m) => (
@@ -447,7 +447,7 @@ export default function EncounterCalculatorPage() {
                       <span className="text-xs" style={{ color: "var(--scene-text-muted)" }}>
                         CR {m.challenge_rating} · {crToXp(m.challenge_rating, m.cr).toLocaleString()} XP
                       </span>
-                      <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+                      <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
                     </button>
                   ))}
                 </div>
@@ -488,7 +488,7 @@ export default function EncounterCalculatorPage() {
           {/* ── Result ── */}
           <section>
             <div className="flex items-center gap-2 mb-3">
-              <Swords className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+              <Swords className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
               <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
                 Difficulty
               </h2>
@@ -560,8 +560,8 @@ export default function EncounterCalculatorPage() {
               {/* ── Treasure generator ── coins (FeyForge-balanced) + SRD-safe magic items */}
               <div className="mt-4 pt-3" style={{ borderTop: "1px solid var(--scene-border)" }}>
                 <div className="flex items-center gap-2 mb-2.5">
-                  <Coins className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
-                  <h3 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
+                  <Coins className="h-4 w-4" style={{ color: "var(--scene-accent-3)" }} />
+                  <h3 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent-3)" }}>
                     Treasure
                   </h3>
                 </div>
@@ -575,8 +575,8 @@ export default function EncounterCalculatorPage() {
                     onClick={() => setLootTierOverride(null)}
                     className="px-2 py-1 rounded text-[11px] font-medium transition-colors"
                     style={{
-                      background: lootTierOverride === null ? "var(--scene-accent)" : "var(--scene-surface)",
-                      color: lootTierOverride === null ? "var(--scene-bg)" : "var(--scene-text-muted)",
+                      background: lootTierOverride === null ? "var(--scene-accent-3)" : "var(--scene-surface)",
+                      color: lootTierOverride === null ? "var(--scene-accent-3-text)" : "var(--scene-text-muted)",
                       border: "1px solid var(--scene-border)",
                     }}
                     title="Auto: scale to the party's average level"
@@ -589,8 +589,8 @@ export default function EncounterCalculatorPage() {
                       onClick={() => setLootTierOverride(t)}
                       className="w-7 py-1 rounded text-[11px] font-medium transition-colors"
                       style={{
-                        background: lootTierOverride === t ? "var(--scene-accent)" : "var(--scene-surface)",
-                        color: lootTierOverride === t ? "var(--scene-bg)" : "var(--scene-text-muted)",
+                        background: lootTierOverride === t ? "var(--scene-accent-3)" : "var(--scene-surface)",
+                        color: lootTierOverride === t ? "var(--scene-accent-3-text)" : "var(--scene-text-muted)",
                         border: "1px solid var(--scene-border)",
                       }}
                       title={`Tier ${t}`}
@@ -632,7 +632,7 @@ export default function EncounterCalculatorPage() {
                         onClick={handleFlavorTreasure}
                         disabled={flavoringLoot || !!lootFlavor}
                         className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-50"
-                        style={{ background: "var(--scene-surface)", color: "var(--scene-accent)", border: "1px solid var(--scene-border)" }}
+                        style={{ background: "var(--scene-surface)", color: "var(--scene-accent-2)", border: "1px solid var(--scene-border)" }}
                         title="Premium AI: add evocative read-aloud (the hoard stands alone without it)"
                       >
                         <Sparkles className="h-3.5 w-3.5" />
@@ -677,7 +677,7 @@ export default function EncounterCalculatorPage() {
         {/* ── Saved encounters (library: saved here + generated from the world map) ── */}
         <section className="mt-8">
           <div className="flex items-center gap-2 mb-3">
-            <BookMarked className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+            <BookMarked className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
             <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
               Saved Encounters{savedEncounters?.length ? ` (${savedEncounters.length})` : ""}
             </h2>
@@ -704,9 +704,9 @@ export default function EncounterCalculatorPage() {
                           title={expandable ? "Show encounter details" : undefined}
                         >
                           {expandable ? (
-                            isOpen ? <ChevronDown className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent)" }} /> : <ChevronRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                            isOpen ? <ChevronDown className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} /> : <ChevronRight className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                           ) : (
-                            <Swords className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                            <Swords className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                           )}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">

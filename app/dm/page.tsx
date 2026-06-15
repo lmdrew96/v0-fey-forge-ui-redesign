@@ -60,7 +60,7 @@ export default function DMPage() {
                 border: "1px solid var(--scene-border)",
               }}
             >
-              <Icon className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+              <Icon className="w-5 h-5 mt-0.5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
               <div>
                 <div className="font-medium" style={{ color: "var(--scene-text-primary)" }}>
                   {label}

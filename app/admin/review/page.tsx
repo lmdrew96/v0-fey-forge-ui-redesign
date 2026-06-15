@@ -247,7 +247,7 @@ function StemAssignmentsSection({
           type="button"
           onClick={onAdd}
           className="flex items-center gap-1 px-2 py-0.5 rounded text-[11px] border"
-          style={{ borderColor: "var(--scene-border)", color: "var(--scene-accent)" }}
+          style={{ borderColor: "var(--scene-border)", color: "var(--scene-accent-2)" }}
         >
           <Plus size={11} /> Add slot
         </button>
@@ -523,7 +523,7 @@ function TrackReviewCard({
           <div className="flex items-center gap-2 mt-0.5 flex-wrap">
             <span
               className="text-[10px] px-1.5 py-0.5 rounded"
-              style={{ background: "var(--scene-border)", color: "var(--scene-accent)" }}
+              style={{ background: "var(--scene-border)", color: "var(--scene-accent-2)" }}
             >
               {track.type}
             </span>
@@ -800,7 +800,7 @@ function TrackReviewCard({
 
       {saved && (
         <div className="flex items-center justify-between">
-          <p className="text-[10px]" style={{ color: "var(--scene-accent)" }}>Saved</p>
+          <p className="text-[10px]" style={{ color: "var(--scene-accent-2)" }}>Saved</p>
           <button
             onClick={handleClearReview}
             className="inline-flex items-center gap-1 text-[10px] transition-opacity hover:opacity-80"
@@ -858,7 +858,7 @@ export default function AdminReviewPage() {
         <AdminTabs />
         {/* Header */}
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: "var(--scene-accent)" }}>Admin</p>
+          <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: "var(--scene-accent-2)" }}>Admin</p>
           <h1
             className="text-2xl font-bold mb-1"
             style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}

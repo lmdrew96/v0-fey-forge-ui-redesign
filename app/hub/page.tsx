@@ -344,7 +344,7 @@ function WorldNewsTab({ campaignId }: { campaignId: CampaignId }) {
           style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
         >
           <div className="flex items-start gap-2.5">
-            <Newspaper className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--scene-accent)" }} />
+            <Newspaper className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
             <div className="min-w-0 flex-1">
               <p className="text-sm" style={{ color: "var(--scene-text-primary)" }}>{n.headline}</p>
               <p className="mt-1 text-xs" style={{ color: "var(--scene-text-muted)" }}>
@@ -489,7 +489,7 @@ function QuestRow({ quest }: { quest: { _id: Id<"campaignQuests">; text: string;
           className="flex-1 bg-transparent text-sm outline-none"
           style={{ color: "var(--scene-text-primary)" }}
         />
-        <button onClick={() => void saveEdit()} aria-label="Save" className="p-1 rounded hover:opacity-80" style={{ color: "var(--scene-accent)" }}>
+        <button onClick={() => void saveEdit()} aria-label="Save" className="p-1 rounded hover:opacity-80" style={{ color: "var(--scene-accent-2)" }}>
           <Check className="h-4 w-4" />
         </button>
         <button
@@ -588,7 +588,7 @@ function SharedQuests({ campaignId }: { campaignId: CampaignId }) {
   return (
     <section className="mb-6">
       <div className="flex items-center gap-1.5 mb-1">
-        <Flag className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+        <Flag className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
         <h2 className="text-xs uppercase tracking-wide" style={{ color: "var(--scene-text-muted)" }}>
           Party Objectives
         </h2>
@@ -659,7 +659,7 @@ function SharedQuestRowPlayer({ quest }: { quest: SharedQuest }) {
       style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
     >
       <div className="flex items-start gap-2">
-        {done && <Check className="h-4 w-4 mt-0.5 shrink-0" style={{ color: "var(--scene-accent)" }} />}
+        {done && <Check className="h-4 w-4 mt-0.5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />}
         <div className="min-w-0">
           <p
             className="text-sm font-medium"
@@ -749,7 +749,7 @@ function SharedQuestRowDM({ quest }: { quest: SharedQuest }) {
           style={{ color: "var(--scene-text-muted)" }}
         />
         <div className="flex justify-end gap-1">
-          <button onClick={() => void saveEdit()} aria-label="Save" className="p-1 rounded hover:opacity-80" style={{ color: "var(--scene-accent)" }}>
+          <button onClick={() => void saveEdit()} aria-label="Save" className="p-1 rounded hover:opacity-80" style={{ color: "var(--scene-accent-2)" }}>
             <Check className="h-4 w-4" />
           </button>
           <button

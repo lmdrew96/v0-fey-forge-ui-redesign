@@ -158,7 +158,7 @@ export function ManeuversSection({
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
-          <Swords className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+          <Swords className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
           <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Maneuvers</h2>
           <span
             className="text-xs px-2 py-0.5 rounded-md tabular-nums"

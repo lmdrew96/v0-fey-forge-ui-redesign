@@ -98,7 +98,7 @@ export function DMAssistantPanel({
         style={{ borderColor: "var(--scene-border)", background: "var(--scene-surface)" }}
       >
         <div className="flex min-w-0 items-center gap-2">
-          <Bot className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent)" }} />
+          <Bot className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
           <div className="min-w-0">
             <p
               className="truncate text-sm font-semibold leading-tight"

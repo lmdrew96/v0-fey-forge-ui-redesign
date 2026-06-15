@@ -270,7 +270,7 @@ export function MonsterAttacksPanel({
                     <button
                       onClick={() => doRoll(attack, i)}
                       className="flex flex-shrink-0 items-center gap-1 rounded px-2.5 py-1 text-xs font-medium transition-opacity hover:opacity-80"
-                      style={{ background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)", color: "var(--scene-accent)", border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)" }}
+                      style={{ background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)", color: "var(--scene-accent-2)", border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)" }}
                     >
                       <Dices className="h-3.5 w-3.5" /> Roll
                     </button>

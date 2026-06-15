@@ -172,7 +172,7 @@ export default function DicePage() {
     <AppShell>
       <div className="p-6 max-w-4xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
-          <Dices size={28} style={{ color: "var(--scene-accent)" }} />
+          <Dices size={28} style={{ color: "var(--scene-accent-2)" }} />
           <h1
             className="text-2xl font-bold"
             style={{
@@ -206,13 +206,13 @@ export default function DicePage() {
               >
                 <span>{currentResult.label ?? currentResult.expression}</span>
                 {currentResult.isAdvantage && (
-                  <span style={{ color: "var(--scene-accent)" }}>• ADV</span>
+                  <span style={{ color: "var(--scene-accent-2)" }}>• ADV</span>
                 )}
                 {currentResult.isDisadvantage && (
                   <span style={{ color: "#ef4444" }}>• DIS</span>
                 )}
                 {currentResult.isCrit && (
-                  <span style={{ color: "var(--scene-accent)" }}>• CRIT</span>
+                  <span style={{ color: "var(--scene-accent-2)" }}>• CRIT</span>
                 )}
               </div>
 
@@ -237,7 +237,7 @@ export default function DicePage() {
               {flag === "nat20" && (
                 <div
                   className="text-sm font-semibold mb-2"
-                  style={{ color: "var(--scene-accent)" }}
+                  style={{ color: "var(--scene-accent-2)" }}
                 >
                   Natural 20!
                 </div>
@@ -438,7 +438,7 @@ export default function DicePage() {
             <button
               onClick={() => setShowSaveForm((v) => !v)}
               className="flex items-center gap-1 text-xs"
-              style={{ color: "var(--scene-accent)" }}
+              style={{ color: "var(--scene-accent-2)" }}
             >
               <Plus size={14} /> Save current
             </button>
@@ -594,7 +594,7 @@ export default function DicePage() {
                 <button
                   onClick={() => setShowAllHistory((s) => !s)}
                   className="mt-2 w-full flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium transition-opacity hover:opacity-80"
-                  style={{ color: "var(--scene-accent)" }}
+                  style={{ color: "var(--scene-accent-2)" }}
                 >
                   {showAllHistory ? "Show less" : `Show all (${rollHistory.length})`}
                   <ChevronDown

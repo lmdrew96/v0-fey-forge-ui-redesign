@@ -102,7 +102,7 @@ export function GuidedCompanion({ characterState }: GuidedCompanionProps) {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+                <Sparkles className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
                 <SheetTitle
                   className="text-sm font-semibold"
                   style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}
@@ -156,7 +156,7 @@ export function GuidedCompanion({ characterState }: GuidedCompanionProps) {
                       className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
                       style={{ background: "color-mix(in srgb, var(--scene-accent) 15%, var(--scene-surface))" }}
                     >
-                      <Sparkles className="h-3 w-3" style={{ color: "var(--scene-accent)" }} />
+                      <Sparkles className="h-3 w-3" style={{ color: "var(--scene-accent-2)" }} />
                     </div>
                     <div
                       className="rounded-2xl rounded-tl-sm px-3 py-2.5"
@@ -193,7 +193,7 @@ export function GuidedCompanion({ characterState }: GuidedCompanionProps) {
                   className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
                   style={{ background: "color-mix(in srgb, var(--scene-accent) 15%, var(--scene-surface))" }}
                 >
-                  <Sparkles className="h-3 w-3" style={{ color: "var(--scene-accent)" }} />
+                  <Sparkles className="h-3 w-3" style={{ color: "var(--scene-accent-2)" }} />
                 </div>
                 <div
                   className="rounded-2xl rounded-tl-sm px-3 py-2.5"

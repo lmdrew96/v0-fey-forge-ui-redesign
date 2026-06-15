@@ -78,7 +78,7 @@ export default function DMAssistantPage() {
           >
             <Bot
               className="mx-auto mb-4 h-10 w-10"
-              style={{ color: "var(--scene-accent)" }}
+              style={{ color: "var(--scene-accent-2)" }}
             />
             <h1
               className="mb-2 text-xl font-bold"
@@ -122,7 +122,7 @@ export default function DMAssistantPage() {
                 color: "var(--scene-text-primary)",
               }}
             >
-              <Sparkles className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+              <Sparkles className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
               DM Assistant
             </h1>
             <p className="truncate text-xs" style={{ color: "var(--scene-text-muted)" }}>
@@ -231,7 +231,7 @@ function EmptyConversationState({
       <div className="max-w-md text-center">
         <Bot
           className="mx-auto mb-4 h-12 w-12"
-          style={{ color: "var(--scene-accent)" }}
+          style={{ color: "var(--scene-accent-2)" }}
         />
         <h2
           className="mb-2 text-lg font-bold"

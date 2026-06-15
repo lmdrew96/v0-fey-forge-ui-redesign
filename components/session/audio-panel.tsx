@@ -527,7 +527,7 @@ export function DMAudioPanel({ sessionId }: { sessionId: SessionId }) {
                     className="scene-range relative w-full h-4 cursor-pointer"
                   />
                 </div>
-                <span className="text-xs font-semibold w-5 text-right shrink-0" style={{ color: "var(--scene-accent)" }}>
+                <span className="text-xs font-semibold w-5 text-right shrink-0" style={{ color: "var(--scene-accent-2)" }}>
                   {RANK_LABELS[musicIntensity]}
                 </span>
               </div>
@@ -543,7 +543,7 @@ export function DMAudioPanel({ sessionId }: { sessionId: SessionId }) {
                       className="px-2 py-0.5 rounded text-[10px]"
                       style={{
                         background: "color-mix(in srgb, var(--scene-accent) 15%, transparent)",
-                        color: "var(--scene-accent)",
+                        color: "var(--scene-accent-2)",
                         border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, transparent)",
                       }}
                     >
@@ -662,7 +662,7 @@ export function DMAudioPanel({ sessionId }: { sessionId: SessionId }) {
             >
               <div className="flex items-center gap-2">
                 {syncEnabled ? (
-                  <Radio size={14} style={{ color: "var(--scene-accent)" }} />
+                  <Radio size={14} style={{ color: "var(--scene-accent-2)" }} />
                 ) : (
                   <WifiOff size={14} style={{ color: "var(--scene-text-muted)" }} />
                 )}

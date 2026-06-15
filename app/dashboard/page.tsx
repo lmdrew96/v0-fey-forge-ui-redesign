@@ -51,7 +51,7 @@ export default function DashboardPage() {
         <div className="mb-8">
           <h1
             className="text-3xl font-bold mb-2"
-            style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent)" }}
+            style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent-2)" }}
           >
             Welcome to FeyForge
           </h1>
@@ -129,7 +129,7 @@ export default function DashboardPage() {
             >
               <BookMarked
                 className="h-6 w-6 shrink-0"
-                style={{ color: "var(--scene-accent)" }}
+                style={{ color: "var(--scene-accent-2)" }}
               />
               <div className="flex-1 min-w-0">
                 <div
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                         >
                           <span className="flex-1 truncate">{c.name}</span>
                           {c.campaignId === activeId && (
-                            <span className="text-xs" style={{ color: "var(--scene-accent)" }}>
+                            <span className="text-xs" style={{ color: "var(--scene-accent-2)" }}>
                               ✓
                             </span>
                           )}
@@ -242,7 +242,7 @@ export default function DashboardPage() {
                 border: "1px solid var(--scene-border)",
               }}
             >
-              <Icon className="w-6 h-6" style={{ color: "var(--scene-accent)" }} />
+              <Icon className="w-6 h-6" style={{ color: "var(--scene-accent-2)" }} />
               <div>
                 <div
                   className="font-semibold"

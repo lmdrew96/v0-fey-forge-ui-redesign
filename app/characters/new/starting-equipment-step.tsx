@@ -44,7 +44,7 @@ export function StartingEquipmentStep({
       >
         <div className="flex items-center justify-between mb-1.5">
           <span className="font-medium" style={{ color: "var(--scene-text-primary)" }}>Take the equipment package</span>
-          {value === "equipment" && <span className="text-xs font-medium" style={{ color: "var(--scene-accent)" }}>Selected</span>}
+          {value === "equipment" && <span className="text-xs font-medium" style={{ color: "var(--scene-accent-2)" }}>Selected</span>}
         </div>
         <div className="flex flex-wrap gap-1.5">
           {pkg.equipment.map((it, i) => (
@@ -70,7 +70,7 @@ export function StartingEquipmentStep({
       >
         <div className="flex items-center justify-between mb-1">
           <span className="font-medium" style={{ color: "var(--scene-text-primary)" }}>Take {gold} gp instead</span>
-          {value === "gold" && <span className="text-xs font-medium" style={{ color: "var(--scene-accent)" }}>Selected</span>}
+          {value === "gold" && <span className="text-xs font-medium" style={{ color: "var(--scene-accent-2)" }}>Selected</span>}
         </div>
         <p className="text-xs" style={{ color: "var(--scene-text-muted)" }}>
           Skip the package and buy your own gear from the inventory later.

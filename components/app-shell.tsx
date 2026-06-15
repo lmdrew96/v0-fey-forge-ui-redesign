@@ -238,7 +238,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Link href="/dashboard">
             <span
               className="text-lg font-bold tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent)" }}
+              style={{ fontFamily: "var(--font-display)", background: "linear-gradient(120deg, var(--scene-accent), var(--scene-accent-2))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}
             >
               FeyForge
             </span>
@@ -263,7 +263,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     )}
                     style={{
                       color: isActive(item.href)
-                        ? "var(--scene-accent)"
+                        ? "var(--scene-accent-2)"
                         : "var(--scene-text-muted)",
                     }}
                   >
@@ -287,7 +287,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           className="flex items-center gap-2.5 px-3 py-1.5 rounded-md text-sm hover:bg-[var(--scene-bg)]"
                           style={{
                             color: isActive(child.href)
-                              ? "var(--scene-accent)"
+                              ? "var(--scene-accent-2)"
                               : "var(--scene-text-muted)",
                             background: isActive(child.href)
                               ? "var(--scene-bg)"
@@ -311,7 +311,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 className="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm hover:bg-[var(--scene-bg)]"
                 style={{
                   color: isActive(item.href)
-                    ? "var(--scene-accent)"
+                    ? "var(--scene-accent-2)"
                     : "var(--scene-text-muted)",
                   background: isActive(item.href) ? "var(--scene-bg)" : undefined,
                 }}
@@ -328,7 +328,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm hover:bg-[var(--scene-bg)]"
               style={{
                 color: isActive("/admin")
-                  ? "var(--scene-accent)"
+                  ? "var(--scene-accent-2)"
                   : "var(--scene-text-muted)",
                 background: isActive("/admin") ? "var(--scene-bg)" : undefined,
               }}
@@ -388,7 +388,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="flex items-center justify-center gap-1.5 w-full rounded-md px-3 py-2 text-sm font-medium transition-opacity hover:opacity-90"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
               }}
             >
@@ -436,7 +436,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </button>
           <span
             className="text-base font-bold tracking-widest uppercase"
-            style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent)" }}
+            style={{ fontFamily: "var(--font-display)", background: "linear-gradient(120deg, var(--scene-accent), var(--scene-accent-2))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}
           >
             FeyForge
           </span>
@@ -491,7 +491,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           style={{ background: "var(--scene-surface)", borderRight: "1px solid var(--scene-border)" }}
         >
           <div className="flex items-center justify-between px-4 h-12 shrink-0" style={{ borderBottom: "1px solid var(--scene-border)" }}>
-            <span className="text-base font-bold tracking-widest uppercase" style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent)" }}>
+            <span className="text-base font-bold tracking-widest uppercase" style={{ fontFamily: "var(--font-display)", background: "linear-gradient(120deg, var(--scene-accent), var(--scene-accent-2))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
               FeyForge
             </span>
             <button onClick={() => setDrawerOpen(false)} aria-label="Close menu" className="p-2 rounded-md hover:bg-[var(--scene-bg)]" style={{ color: "var(--scene-text-muted)" }}>
@@ -530,7 +530,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 className="flex items-center justify-center gap-1.5 w-full rounded-md px-3 py-2 text-sm font-medium transition-opacity hover:opacity-90"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
                 }}
               >
@@ -576,7 +576,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             className="flex flex-col items-center gap-0.5 px-2 py-1 text-xs"
             style={{
               color: isActive(item.href)
-                ? "var(--scene-accent)"
+                ? "var(--scene-accent-2)"
                 : "var(--scene-text-muted)",
             }}
           >
@@ -655,7 +655,7 @@ function CampaignSwitcher({ onSelect }: { onSelect?: () => void }) {
         className="w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-sm transition-colors hover:opacity-90"
         style={{ background: "var(--scene-bg)", border: "1px solid var(--scene-border)" }}
       >
-        <BookMarked className="w-4 h-4 shrink-0" style={{ color: "var(--scene-accent)" }} />
+        <BookMarked className="w-4 h-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
         <span className="flex-1 text-left truncate" style={{ color: "var(--scene-text-primary)" }}>
           {active ? active.name : "Select campaign"}
         </span>
@@ -695,7 +695,7 @@ function CampaignSwitcher({ onSelect }: { onSelect?: () => void }) {
                   {c.role === "dm" ? "DM" : "Player"}
                 </span>
                 {isActive && (
-                  <Check className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+                  <Check className="w-3.5 h-3.5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                 )}
               </button>
             )
@@ -725,7 +725,7 @@ function DrawerLink({
       onClick={onNavigate}
       className="flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm hover:bg-[var(--scene-bg)]"
       style={{
-        color: active ? "var(--scene-accent)" : "var(--scene-text-muted)",
+        color: active ? "var(--scene-accent-2)" : "var(--scene-text-muted)",
         background: active ? "var(--scene-bg)" : undefined,
       }}
     >

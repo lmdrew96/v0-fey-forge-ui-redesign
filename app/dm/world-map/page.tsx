@@ -180,7 +180,7 @@ export default function WorldMapPage() {
     return (
       <AppShell>
         <div className="flex h-[60vh] items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin" style={{ color: "var(--scene-accent)" }} />
+          <Loader2 className="h-8 w-8 animate-spin" style={{ color: "var(--scene-accent-2)" }} />
         </div>
       </AppShell>
     )
@@ -310,7 +310,7 @@ function DrillDownUploader({
             </>
           ) : (
             <>
-              <ImageIcon className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+              <ImageIcon className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
               Attach a local map (city / dungeon image)
             </>
           )}
@@ -763,7 +763,7 @@ function MapWorkspace({
             className="flex items-center gap-2 text-lg font-bold sm:text-xl"
             style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}
           >
-            <Globe className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+            <Globe className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
             <span className="truncate">{map.name}</span>
           </h1>
           <p className="truncate text-xs" style={{ color: "var(--scene-text-muted)" }}>
@@ -1256,7 +1256,7 @@ function LocationEditor({
             className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
             style={{
               background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-              color: "var(--scene-accent)",
+              color: "var(--scene-accent-2)",
               border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
             }}
             title={
@@ -1641,7 +1641,7 @@ function WorldEventRow({
                     className="rounded px-1.5 py-0.5 font-medium transition-opacity hover:opacity-80"
                     style={{
                       background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                      color: "var(--scene-accent)",
+                      color: "var(--scene-accent-2)",
                       border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
                     }}
                   >
@@ -1669,7 +1669,7 @@ function WorldEventRow({
           <button
             onClick={() => setExpanded((x) => !x)}
             className="mt-1.5 inline-flex items-center gap-1 text-[11px] font-medium transition-opacity hover:opacity-80"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             <ScrollText className="h-3 w-3" />
             Plot seed
@@ -1700,7 +1700,7 @@ function WorldEventRow({
               {showUpgrade && (
                 <>
                   {" "}
-                  <a href="/account" className="underline" style={{ color: "var(--scene-accent)" }}>
+                  <a href="/account" className="underline" style={{ color: "var(--scene-accent-2)" }}>
                     Upgrade
                   </a>
                 </>
@@ -1713,7 +1713,7 @@ function WorldEventRow({
               onClick={generate}
               disabled={generating}
               className="inline-flex items-center gap-1 rounded px-2 py-1 text-[11px] font-medium transition-opacity hover:opacity-80 disabled:opacity-40"
-              style={{ color: "var(--scene-accent)", border: "1px solid var(--scene-border)" }}
+              style={{ color: "var(--scene-accent-2)", border: "1px solid var(--scene-border)" }}
               title={ai ? "Generate a fresh take with AI" : "Flesh this out with AI"}
             >
               {generating ? <Loader2 className="h-3 w-3 animate-spin" /> : <Sparkles className="h-3 w-3" />}

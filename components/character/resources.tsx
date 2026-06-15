@@ -68,7 +68,7 @@ function ResourceCard({
             className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded flex-shrink-0"
             style={{
               background: "color-mix(in srgb, var(--scene-accent) 12%, transparent)",
-              color: "var(--scene-accent)",
+              color: "var(--scene-accent-2)",
             }}
           >
             {rechargeLabel(res.rechargeOn)}
@@ -111,7 +111,7 @@ function ResourceCard({
           className="p-1.5 rounded-md transition-opacity hover:opacity-80 disabled:opacity-25"
           style={{
             background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-            color: "var(--scene-accent)",
+            color: "var(--scene-accent-2)",
           }}
         >
           <Minus className="h-4 w-4" />
@@ -145,7 +145,7 @@ function ResourceCard({
                 disabled={spendDisabled}
                 title="Spend one use"
                 className="px-2.5 py-1 rounded-md text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-25 flex-shrink-0"
-                style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)" }}
+                style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)" }}
               >
                 Use
               </button>
@@ -211,7 +211,7 @@ export function ResourcesSection({
   return (
     <section>
       <div className="flex items-center gap-1.5 mb-3">
-        <Zap className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+        <Zap className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
         <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
           Class Resources
         </h2>

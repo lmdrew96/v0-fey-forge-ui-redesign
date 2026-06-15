@@ -129,7 +129,7 @@ function AbilityRow({ label, base, bonus }: { label: string; base: number; bonus
       </span>
       <div className="flex items-center gap-2">
         {bonus ? (
-          <span className="text-xs" style={{ color: "var(--scene-accent)" }}>
+          <span className="text-xs" style={{ color: "var(--scene-accent-2)" }}>
             {base}+{bonus}
           </span>
         ) : (
@@ -207,7 +207,7 @@ function QuickRollPreview({
               <div className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
                 Level 1
               </div>
-              <div className="text-sm font-medium" style={{ color: "var(--scene-accent)" }}>
+              <div className="text-sm font-medium" style={{ color: "var(--scene-accent-2)" }}>
                 {maxHp} HP · d{hitDie}
               </div>
             </div>

@@ -87,8 +87,8 @@ export default function JoinByCodePage() {
             {/* Campaign banner */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-2">
-                <Users className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
-                <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent)" }}>
+                <Users className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
+                <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent-2)" }}>
                   Campaign invite
                 </span>
               </div>
@@ -103,7 +103,7 @@ export default function JoinByCodePage() {
               {info.sessionLive && (
                 <div className="flex items-center gap-2 mt-3">
                   <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--scene-accent)" }} />
-                  <span className="text-xs" style={{ color: "var(--scene-accent)" }}>A session is live right now</span>
+                  <span className="text-xs" style={{ color: "var(--scene-accent-2)" }}>A session is live right now</span>
                 </div>
               )}
             </div>
@@ -177,7 +177,7 @@ export default function JoinByCodePage() {
                               border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, transparent)",
                             }}
                           >
-                            <Shield className="h-5 w-5" style={{ color: "var(--scene-accent)" }} />
+                            <Shield className="h-5 w-5" style={{ color: "var(--scene-accent-2)" }} />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="font-bold truncate" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>

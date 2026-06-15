@@ -15,7 +15,7 @@ export function CenteredCard({ icon: Icon, title, body }: { icon: LucideIcon; ti
         className="max-w-md rounded-xl p-8 text-center"
         style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
       >
-        <Icon className="mx-auto mb-4 h-10 w-10" style={{ color: "var(--scene-accent)", opacity: 0.6 }} />
+        <Icon className="mx-auto mb-4 h-10 w-10" style={{ color: "var(--scene-accent-2)", opacity: 0.6 }} />
         <h1 className="mb-2 text-xl font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>
           {title}
         </h1>

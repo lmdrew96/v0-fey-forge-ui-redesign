@@ -159,7 +159,7 @@ function CreaturePicker({
               >
                 <span className="text-sm flex-1 truncate" style={{ color: "var(--scene-text-primary)" }}>{m.name}</span>
                 <span className="text-xs flex-shrink-0" style={{ color: "var(--scene-text-muted)" }}>CR {m.challenge_rating} · {m.hit_points} HP</span>
-                <Plus className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                <Plus className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
               </button>
             ))}
           </div>
@@ -214,7 +214,7 @@ function StatBlockCard({
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm font-semibold" style={{ color: "var(--scene-text-primary)" }}>{name}</span>
             {badge && (
-              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)" }}>{badge}</span>
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)" }}>{badge}</span>
             )}
           </div>
           <div className="text-xs mt-0.5" style={{ color: "var(--scene-text-muted)" }}>AC {ac} · {speedLabel(speed)}</div>
@@ -230,7 +230,7 @@ function StatBlockCard({
       <div className="mb-3">
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-1.5">
-            <Heart className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+            <Heart className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
             <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>HP</span>
           </div>
           <span className="text-sm font-bold tabular-nums" style={{ color: "var(--scene-text-primary)" }}>{currentHp}<span style={{ color: "var(--scene-text-muted)" }}>/{maxHp}</span></span>
@@ -244,7 +244,7 @@ function StatBlockCard({
               <button key={d} onClick={() => onAdjustHp(d)} disabled={currentHp <= 0} className="flex-1 py-1 rounded text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-30" style={{ background: "#ef444422", color: "#ef4444", border: "1px solid #ef444444" }}>{d}</button>
             ))}
             {([1, 5] as const).map((d) => (
-              <button key={d} onClick={() => onAdjustHp(d)} disabled={currentHp >= maxHp} className="flex-1 py-1 rounded text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-30" style={{ background: "color-mix(in srgb, var(--scene-accent) 20%, transparent)", color: "var(--scene-accent)", border: "1px solid color-mix(in srgb, var(--scene-accent) 40%, transparent)" }}>+{d}</button>
+              <button key={d} onClick={() => onAdjustHp(d)} disabled={currentHp >= maxHp} className="flex-1 py-1 rounded text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-30" style={{ background: "color-mix(in srgb, var(--scene-accent) 20%, transparent)", color: "var(--scene-accent-2)", border: "1px solid color-mix(in srgb, var(--scene-accent) 40%, transparent)" }}>+{d}</button>
             ))}
           </div>
         )}
@@ -256,7 +256,7 @@ function StatBlockCard({
           <div key={a} className="text-center rounded-md py-1" style={{ background: "var(--scene-bg)", border: "1px solid var(--scene-border)" }}>
             <div className="text-[9px] uppercase tracking-wider" style={{ color: "var(--scene-text-muted)" }}>{ABILITY_ABBREVIATIONS[a]}</div>
             <div className="text-xs font-bold" style={{ color: "var(--scene-text-primary)" }}>{abilities[a]}</div>
-            <div className="text-[10px]" style={{ color: "var(--scene-accent)" }}>{formatModifier(getAbilityModifier(abilities[a]))}</div>
+            <div className="text-[10px]" style={{ color: "var(--scene-accent-2)" }}>{formatModifier(getAbilityModifier(abilities[a]))}</div>
           </div>
         ))}
       </div>
@@ -281,7 +281,7 @@ function StatBlockCard({
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-sm flex-1 min-w-0" style={{ color: "var(--scene-text-primary)" }}>{atk.name}</span>
                   {atk.toHit !== null && (
-                    <button onClick={() => roll(atk.name, atk.toHit as number)} className="text-xs px-2 py-0.5 rounded-md font-medium transition-opacity hover:opacity-80" style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)" }} title="Roll to hit (honors adv/dis)">{formatModifier(atk.toHit)} hit</button>
+                    <button onClick={() => roll(atk.name, atk.toHit as number)} className="text-xs px-2 py-0.5 rounded-md font-medium transition-opacity hover:opacity-80" style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)" }} title="Roll to hit (honors adv/dis)">{formatModifier(atk.toHit)} hit</button>
                   )}
                   {atk.save && (
                     <span className="text-xs" style={{ color: "var(--scene-text-muted)" }}>DC {atk.save.dc} {atk.save.ability.slice(0, 3)}</span>
@@ -387,7 +387,7 @@ export function WildshapeSection({
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
-          <Leaf className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+          <Leaf className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
           <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Wild Shape</h2>
         </div>
         <button onClick={() => setPicking(true)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-opacity hover:opacity-80" style={{ background: "var(--scene-accent)", color: "var(--scene-bg)" }}>
@@ -429,7 +429,7 @@ export function WildshapeSection({
                   <span className="text-sm" style={{ color: "var(--scene-text-primary)" }}>{f.creatureName}</span>
                   <span className="text-xs ml-2" style={{ color: "var(--scene-text-muted)" }}>CR {f.cr} · AC {f.ac} · {f.maxHp} HP</span>
                 </div>
-                <button onClick={() => transform(f.rowId)} className="text-xs px-2.5 py-1 rounded-md font-medium transition-opacity hover:opacity-80 flex-shrink-0" style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent)" }}>Transform</button>
+                <button onClick={() => transform(f.rowId)} className="text-xs px-2.5 py-1 rounded-md font-medium transition-opacity hover:opacity-80 flex-shrink-0" style={{ background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)", color: "var(--scene-accent-2)" }}>Transform</button>
                 <button onClick={() => remove(f.rowId, f.creatureName)} className="p-1 rounded transition-opacity hover:opacity-80 flex-shrink-0" style={{ color: "var(--scene-text-muted)" }} aria-label={`Remove ${f.creatureName}`}><Trash2 className="h-3.5 w-3.5" /></button>
               </div>
             ),
@@ -493,7 +493,7 @@ export function CompanionsSection({
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
-          <PawPrint className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+          <PawPrint className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
           <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Companions</h2>
         </div>
         <button onClick={() => setPicking(true)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-opacity hover:opacity-80" style={{ background: "var(--scene-accent)", color: "var(--scene-bg)" }}>

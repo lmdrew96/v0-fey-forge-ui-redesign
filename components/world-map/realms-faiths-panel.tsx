@@ -210,7 +210,7 @@ export function RealmsFaithsPanel({
             className="flex items-center gap-2 text-lg font-bold"
             style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}
           >
-            <Crown className="h-5 w-5" style={{ color: "var(--scene-accent)" }} />
+            <Crown className="h-5 w-5" style={{ color: "var(--scene-accent-2)" }} />
             Realms &amp; Faiths
           </h2>
           <button onClick={onClose} aria-label="Close" className="rounded p-1 hover:opacity-70" style={{ color: "var(--scene-text-muted)" }}>
@@ -548,7 +548,7 @@ function FaithCard({ faith, followers }: { faith: FaithInfo; followers?: FaithFo
           )}
         </div>
         {faith.deity ? (
-          <p className="mt-0.5 text-xs italic" style={{ color: "var(--scene-accent)" }}>{faith.deity}</p>
+          <p className="mt-0.5 text-xs italic" style={{ color: "var(--scene-accent-2)" }}>{faith.deity}</p>
         ) : (
           <p className="mt-0.5 text-[11px] italic" style={{ color: "var(--scene-text-muted)" }}>No named deity</p>
         )}
@@ -649,7 +649,7 @@ function DmDiplomacyFeed({
   const REVEAL_PILL: Record<string, { label: string; color: string }> = {
     revealed: { label: "Live", color: "#16a34a" },
     held: { label: "Held", color: "#d97706" },
-    pending: { label: "New", color: "var(--scene-accent)" },
+    pending: { label: "New", color: "var(--scene-accent-2)" },
     private: { label: "Hidden", color: "var(--scene-text-muted)" },
   }
   return (
@@ -782,7 +782,7 @@ function DmDiplomacyEditor({
         onClick={() => onAddRelation(realm.name)}
         disabled={realmNames.length <= 1}
         className="mt-1.5 inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-medium hover:opacity-80 disabled:opacity-40"
-        style={{ color: "var(--scene-accent)", border: "1px dashed var(--scene-border)" }}
+        style={{ color: "var(--scene-accent-2)", border: "1px dashed var(--scene-border)" }}
       >
         <Plus className="h-3 w-3" /> Add relationship
       </button>
@@ -942,7 +942,7 @@ function NewsPrompt({
                 onClick={generate}
                 disabled={!pending.otherRealm || generating}
                 className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-medium hover:opacity-80 disabled:opacity-40"
-                style={{ color: "var(--scene-accent)", border: "1px solid var(--scene-border)" }}
+                style={{ color: "var(--scene-accent-2)", border: "1px solid var(--scene-border)" }}
                 title="Generate a headline + private DM plot seed with AI"
               >
                 {generating ? <Loader2 className="h-3 w-3 animate-spin" /> : <Sparkles className="h-3 w-3" />}
@@ -962,7 +962,7 @@ function NewsPrompt({
                 {quotaHit && (
                   <>
                     {" "}
-                    <a href="/account" className="underline" style={{ color: "var(--scene-accent)" }}>
+                    <a href="/account" className="underline" style={{ color: "var(--scene-accent-2)" }}>
                       Upgrade
                     </a>
                   </>
@@ -974,7 +974,7 @@ function NewsPrompt({
           {seed && (
             <div className="rounded-lg border p-2.5" style={{ background: "var(--scene-bg)", borderColor: "var(--scene-border)" }}>
               <div className="mb-1 flex items-center gap-1.5">
-                <ScrollText className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+                <ScrollText className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
                 <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
                   DM plot seed · never shown to players
                 </span>

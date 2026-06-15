@@ -618,7 +618,7 @@ export default function HomebrewPage() {
       <div className="max-w-3xl mx-auto px-4 py-6">
         <div className="flex items-start justify-between gap-4 mb-2">
           <div className="flex items-center gap-2.5">
-            <FlaskConical className="w-6 h-6" style={{ color: "var(--scene-accent)" }} />
+            <FlaskConical className="w-6 h-6" style={{ color: "var(--scene-accent-2)" }} />
             <h1
               className="text-2xl font-bold"
               style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}

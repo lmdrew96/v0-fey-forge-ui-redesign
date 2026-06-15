@@ -349,7 +349,7 @@ export function LocationDetail({
           className="mt-3 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-opacity hover:opacity-90"
           style={{
             background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-            color: "var(--scene-accent)",
+            color: "var(--scene-accent-2)",
             border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
           }}
         >

@@ -110,7 +110,7 @@ export function InviteDialogBody({ campaign }: { campaign: Doc<"campaigns"> }) {
             onClick={() => link && copy(link, "Invite link")}
             disabled={!link}
             className="text-xs underline underline-offset-2 transition-opacity hover:opacity-80 disabled:opacity-50"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             Copy invite link
           </button>
@@ -170,7 +170,7 @@ export function InviteDialogBody({ campaign }: { campaign: Doc<"campaigns"> }) {
                   style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
                 >
                   {m.role === "dm" ? (
-                    <Crown className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                    <Crown className="h-4 w-4 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                   ) : (
                     <span className="h-4 w-4 flex-shrink-0 rounded-full" style={{ background: "var(--scene-border)" }} />
                   )}

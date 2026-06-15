@@ -74,7 +74,7 @@ export default function SettingsPage() {
           <Link
             href="/acknowledgments"
             className="inline-block text-sm hover:opacity-80 transition-opacity"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             Acknowledgments &amp; credits →
           </Link>

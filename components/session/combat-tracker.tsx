@@ -497,9 +497,9 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
                   title={expandable ? "Show encounter details" : undefined}
                 >
                   {expandable ? (
-                    isOpen ? <ChevronDown className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent)" }} /> : <ChevronRight className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                    isOpen ? <ChevronDown className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} /> : <ChevronRight className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                   ) : (
-                    <Swords className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent)" }} />
+                    <Swords className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                   )}
                   <span className="truncate text-sm" style={{ color: "var(--scene-text-primary)" }}>{e.name}</span>
                   <DifficultyBadge difficulty={e.details?.difficulty} />
@@ -547,7 +547,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
           className="rounded-xl p-6 text-center"
           style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
         >
-          <Swords className="h-8 w-8 mx-auto mb-3" style={{ color: "var(--scene-accent)", opacity: 0.5 }} />
+          <Swords className="h-8 w-8 mx-auto mb-3" style={{ color: "var(--scene-accent-2)", opacity: 0.5 }} />
           <p className="text-sm mb-4" style={{ color: "var(--scene-text-muted)" }}>
             {joinable > 0
               ? `Start an encounter with ${joinable} party member${joinable !== 1 ? "s" : ""} — players roll their own initiative; monsters and NPCs roll as you add them.`
@@ -581,7 +581,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
       {/* Header: round + turn controls */}
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-xs uppercase tracking-widest flex items-center gap-2" style={{ color: "var(--scene-text-muted)" }}>
-          <Swords className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+          <Swords className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
           Combat — Round {combat.round}
         </h2>
         <button
@@ -649,7 +649,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
                     }
                     className="w-10 py-1.5 flex items-center justify-center rounded transition-opacity hover:opacity-80"
                     style={{
-                      color: "var(--scene-accent)",
+                      color: "var(--scene-accent-2)",
                       border: "1px dashed color-mix(in srgb, var(--scene-accent) 45%, transparent)",
                     }}
                     aria-label={`Roll initiative for ${c.name}`}
@@ -910,7 +910,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm transition-opacity hover:opacity-80"
                 style={{ background: "var(--scene-bg)", color: "var(--scene-text-primary)", border: "1px solid var(--scene-border)" }}
               >
-                <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+                <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
                 {cr.name}
                 <span style={{ color: "var(--scene-text-muted)" }}>· {cr.ownerName} · {cr.kind === "form" ? "Wild Shape" : "companion"}</span>
               </button>
@@ -932,7 +932,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm transition-opacity hover:opacity-80"
                 style={{ background: "var(--scene-bg)", color: "var(--scene-text-primary)", border: "1px solid var(--scene-border)" }}
               >
-                <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+                <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
                 {char.name}
                 <span style={{ color: "var(--scene-text-muted)" }}>· Lv {char.level} {char.characterClass}</span>
               </button>
@@ -955,7 +955,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
                 style={{ background: "var(--scene-bg)", color: "var(--scene-text-primary)", border: "1px solid var(--scene-border)" }}
                 title={npc.statblockRef?.kind === "srd" ? `Fights as ${npc.statblockRef.monsterName}` : "Fights as a homebrew stat block"}
               >
-                <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+                <Plus className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
                 {npc.name}
                 <span style={{ color: "var(--scene-text-muted)" }}>
                   · {npc.statblockRef?.kind === "srd" ? npc.statblockRef.monsterName : "homebrew"}
@@ -995,7 +995,7 @@ export function DMCombatTracker({ sessionId, campaignId }: { sessionId: SessionI
                     {m.name}
                     <span
                       className="ml-1.5 text-[10px] px-1 py-0.5 rounded-sm align-middle"
-                      style={{ background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)", color: "var(--scene-accent)" }}
+                      style={{ background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)", color: "var(--scene-accent-2)" }}
                     >
                       HB
                     </span>
@@ -1217,8 +1217,8 @@ export function PlayerCombatView({
   return (
     <section>
       <div className="flex items-center gap-2 mb-3">
-        <Swords className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
-        <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent)" }}>
+        <Swords className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
+        <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent-2)" }}>
           Combat — Round {combat.round}
         </h2>
       </div>
@@ -1259,7 +1259,7 @@ export function PlayerCombatView({
                     </span>
                   )}
                   {c.isActive && (
-                    <span className="text-xs px-1.5 py-0.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: "color-mix(in srgb, var(--scene-accent) 25%, transparent)", color: "var(--scene-accent)" }}>
+                    <span className="text-xs px-1.5 py-0.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: "color-mix(in srgb, var(--scene-accent) 25%, transparent)", color: "var(--scene-accent-2)" }}>
                       Turn
                     </span>
                   )}

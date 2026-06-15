@@ -221,7 +221,7 @@ export default function CampaignsPage() {
                             className="text-xs px-2 py-0.5 rounded-full inline-flex items-center gap-1"
                             style={{
                               background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)",
-                              color: "var(--scene-accent)",
+                              color: "var(--scene-accent-2)",
                             }}
                           >
                             <Check className="h-3 w-3" />
@@ -263,7 +263,7 @@ export default function CampaignsPage() {
                         className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md transition-opacity hover:opacity-80"
                         style={{
                           background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                          color: "var(--scene-accent)",
+                          color: "var(--scene-accent-2)",
                         }}
                         title="Invite players"
                       >

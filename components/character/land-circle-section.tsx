@@ -80,7 +80,7 @@ export function LandCircleSection({
   return (
     <section className="mb-6">
       <div className="flex items-center gap-1.5 mb-3">
-        <Trees className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+        <Trees className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
         <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
           Circle of the Land — Terrain
         </h2>

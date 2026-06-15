@@ -302,7 +302,7 @@ export function WorldMapViewer({ campaignId, isDM }: { campaignId: CampaignId; i
   if (map === undefined || locations === undefined) {
     return (
       <div className="flex h-[70vh] min-h-[420px] items-center justify-center rounded-xl border" style={{ borderColor: "var(--scene-border)", background: "var(--scene-surface)" }}>
-        <Loader2 className="h-7 w-7 animate-spin" style={{ color: "var(--scene-accent)" }} />
+        <Loader2 className="h-7 w-7 animate-spin" style={{ color: "var(--scene-accent-2)" }} />
       </div>
     )
   }
@@ -313,7 +313,7 @@ export function WorldMapViewer({ campaignId, isDM }: { campaignId: CampaignId; i
         className="flex h-[70vh] min-h-[420px] flex-col items-center justify-center gap-2 rounded-xl border p-6 text-center"
         style={{ borderColor: "var(--scene-border)", background: "var(--scene-surface)" }}
       >
-        <Globe className="h-9 w-9" style={{ color: "var(--scene-accent)", opacity: 0.6 }} />
+        <Globe className="h-9 w-9" style={{ color: "var(--scene-accent-2)", opacity: 0.6 }} />
         <p className="text-sm font-medium" style={{ color: "var(--scene-text-primary)" }}>
           {isDM ? "No world map yet" : "Your DM hasn't set up a map yet"}
         </p>

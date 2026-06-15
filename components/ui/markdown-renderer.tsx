@@ -134,7 +134,7 @@ const sceneComponents: Components = {
     return (
       <code
         className="rounded px-1 py-0.5 text-xs font-mono"
-        style={{ background: sceneCodeBg, color: "var(--scene-accent)" }}
+        style={{ background: sceneCodeBg, color: "var(--scene-accent-2)" }}
       >
         {children}
       </code>
@@ -163,7 +163,7 @@ const sceneComponents: Components = {
       target="_blank"
       rel="noopener noreferrer"
       className="underline underline-offset-2 hover:opacity-80"
-      style={{ color: "var(--scene-accent)" }}
+      style={{ color: "var(--scene-accent-2)" }}
     >
       {children}
     </a>

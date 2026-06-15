@@ -17,20 +17,23 @@ export type EncounterDetailsData = {
 }
 
 // Single source of truth for difficulty → color across every encounter surface.
+// Backed by the constant semantic tokens (--sem-*) so danger never re-skins by
+// theme or scene. "hard" is a 2014-only intermediate the 3-tier palette doesn't
+// cover, so it keeps its own orange.
 export function difficultyColor(label?: string): string {
   switch ((label ?? "").toLowerCase()) {
     case "easy":
     case "low":
     case "trivial":
-      return "#22c55e"
+      return "var(--sem-low)"
     case "medium":
     case "moderate":
-      return "#f59e0b"
+      return "var(--sem-moderate)"
     case "hard":
       return "#f97316"
     case "deadly":
     case "high":
-      return "#ef4444"
+      return "var(--sem-high)"
     default:
       return "var(--scene-text-muted)"
   }
@@ -64,23 +67,26 @@ export function EncounterDetails({ details }: { details?: EncounterDetailsData |
       <DetailBlock label="Read aloud" body={details!.readAloud} accentBorder />
       <DetailBlock label="DM notes & tactics" body={details!.setup} />
       <DetailBlock label="Scaling" body={details!.scaling} />
-      <DetailBlock label="Treasure" body={details!.treasure} />
+      <DetailBlock label="Treasure" body={details!.treasure} accent="var(--scene-accent-3)" />
     </div>
   )
 }
 
-function DetailBlock({ label, body, accentBorder }: { label: string; body?: string; accentBorder?: boolean }) {
+// `accent` (a CSS color) tints the left edge + heading — gives the Treasure
+// block its tertiary-azure identity. `accentBorder` is the legacy primary edge.
+function DetailBlock({ label, body, accentBorder, accent }: { label: string; body?: string; accentBorder?: boolean; accent?: string }) {
   if (!body?.trim()) return null
+  const edge = accent ?? (accentBorder ? "var(--scene-accent)" : undefined)
   return (
     <div
       className="rounded-lg px-3 py-2"
       style={{
         background: "var(--scene-bg)",
-        borderLeft: accentBorder ? "3px solid var(--scene-accent)" : "1px solid var(--scene-border)",
-        border: accentBorder ? undefined : "1px solid var(--scene-border)",
+        borderLeft: edge ? `3px solid ${edge}` : "1px solid var(--scene-border)",
+        border: edge ? undefined : "1px solid var(--scene-border)",
       }}
     >
-      <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide" style={{ color: "var(--scene-text-muted)" }}>
+      <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent ?? "var(--scene-text-muted)" }}>
         {label}
       </p>
       <MarkdownRenderer variant="scene" content={body} className="text-sm" />

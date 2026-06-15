@@ -609,7 +609,7 @@ function MyCharacterPanel({ sessionId, member }: { sessionId: SessionId; member:
       <div className="mb-3">
         <div className="flex items-center justify-between mb-1.5">
           <div className="flex items-center gap-1.5">
-            <Heart className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+            <Heart className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
             <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Hit Points</span>
           </div>
           <span className="text-sm font-bold tabular-nums" style={{ color: "var(--scene-text-primary)" }}>
@@ -633,7 +633,7 @@ function MyCharacterPanel({ sessionId, member }: { sessionId: SessionId; member:
           {([1, 5] as const).map((d) => (
             <button key={d} onClick={() => handleHpDelta(d)} disabled={char.hitPoints.current >= char.hitPoints.max}
               className="flex-1 py-1 rounded text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-30"
-              style={{ background: "color-mix(in srgb, var(--scene-accent) 20%, transparent)", color: "var(--scene-accent)", border: "1px solid color-mix(in srgb, var(--scene-accent) 40%, transparent)" }}>
+              style={{ background: "color-mix(in srgb, var(--scene-accent) 20%, transparent)", color: "var(--scene-accent-2)", border: "1px solid color-mix(in srgb, var(--scene-accent) 40%, transparent)" }}>
               +{d}
             </button>
           ))}
@@ -687,7 +687,7 @@ function JoinView({ sessionId }: { sessionId: SessionId }) {
       <div>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--scene-accent)" }} />
-          <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent)" }}>Session Live</span>
+          <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent-2)" }}>Session Live</span>
         </div>
         <h1 className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>Choose Your Character</h1>
         <p className="text-sm" style={{ color: "var(--scene-text-muted)" }}>Pick who you're playing to join the party.</p>
@@ -750,7 +750,7 @@ function ReceiverView({ sessionId, campaignId, myMember }: { sessionId: SessionI
     <div className="space-y-6">
       <div className="flex items-center gap-2">
         <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--scene-accent)" }} />
-        <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent)" }}>Session Live</span>
+        <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent-2)" }}>Session Live</span>
       </div>
 
       {/* Desktop dashboard: character + combat + audio on the left, scene + broadcasts on the right.
@@ -770,7 +770,7 @@ function ReceiverView({ sessionId, campaignId, myMember }: { sessionId: SessionI
       <div className="rounded-xl p-6 text-center" style={{ background: "color-mix(in srgb, var(--scene-accent) 6%, var(--scene-surface))", border: "1px solid color-mix(in srgb, var(--scene-accent) 20%, var(--scene-border))" }}>
         {activeScene ? (
           <>
-            <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-accent)" }}>Current Scene</div>
+            <div className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-accent-2)" }}>Current Scene</div>
             <h2 className="text-3xl font-bold mb-1" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>{currentScene?.label ?? activeScene}</h2>
             <p className="text-sm italic" style={{ color: "var(--scene-text-muted)" }}>{currentScene?.desc}</p>
           </>
@@ -796,7 +796,7 @@ function ReceiverView({ sessionId, campaignId, myMember }: { sessionId: SessionI
                 </div>
                 <p className="font-semibold text-sm" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>{b.title}</p>
                 {b.body && <p className="text-xs mt-1 truncate" style={{ color: "var(--scene-text-muted)" }}>{b.body}</p>}
-                <p className="text-xs mt-2" style={{ color: "var(--scene-accent)", opacity: 0.7 }}>Tap to reveal →</p>
+                <p className="text-xs mt-2" style={{ color: "var(--scene-accent-2)", opacity: 0.7 }}>Tap to reveal →</p>
               </button>
             ))}
           </div>
@@ -899,7 +899,7 @@ function ConductorView({ sessionId, campaignId, activeScene, activeScenePalette,
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--scene-accent)" }} />
-            <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent)" }}>Session Live</span>
+            <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-accent-2)" }}>Session Live</span>
           </div>
           <h1 className="text-2xl font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>DM Conductor</h1>
           {currentScene && currentScene.id !== "" && <p className="text-sm mt-0.5" style={{ color: "var(--scene-text-muted)" }}>{currentScene.label} — {currentScene.desc}</p>}
@@ -1040,7 +1040,7 @@ function DMReadyView({ campaignId }: { campaignId: CampaignId }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
       <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: "color-mix(in srgb, var(--scene-accent) 15%, var(--scene-surface))", border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, transparent)" }}>
-        <Sparkles className="h-8 w-8" style={{ color: "var(--scene-accent)" }} />
+        <Sparkles className="h-8 w-8" style={{ color: "var(--scene-accent-2)" }} />
       </div>
       <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>Ready to Forge the Session</h2>
       <p className="text-sm mb-8 max-w-sm" style={{ color: "var(--scene-text-muted)" }}>Start a live session and your players will see scenes, atmosphere, and broadcasts in real time.</p>

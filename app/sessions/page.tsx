@@ -237,7 +237,7 @@ export default function SessionsPage() {
                     </div>
                     <div
                       className="text-sm font-bold"
-                      style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-accent)" }}
+                      style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-accent-2)" }}
                     >
                       {session.number}
                     </div>

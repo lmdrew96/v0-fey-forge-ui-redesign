@@ -138,7 +138,7 @@ export function AttacksSection({
               className="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
               }}
               title="Improved Critical — your weapon attacks crit on this range, applied automatically"
             >
@@ -225,7 +225,7 @@ export function AttacksSection({
                 style={{
                   background:
                     "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                   border:
                     "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
                 }}
@@ -506,7 +506,7 @@ export function InventorySection({
               className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full font-medium"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 12%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
               }}
               title="Attunement slots used (5e limit: 3)"
             >
@@ -712,7 +712,7 @@ function ItemRow({
                 className="text-[10px] px-1.5 py-0.5 rounded-md flex-shrink-0"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                 }}
               >
                 Equipped
@@ -723,7 +723,7 @@ function ItemRow({
                 className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-md flex-shrink-0"
                 style={{
                   background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                  color: "var(--scene-accent)",
+                  color: "var(--scene-accent-2)",
                 }}
               >
                 <Sparkles className="h-2.5 w-2.5" />
@@ -824,7 +824,7 @@ function ItemRow({
               className="px-3 py-1.5 rounded-md text-sm font-semibold transition-opacity hover:opacity-90"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
               }}
               title="Use one (decrements quantity)"
@@ -838,7 +838,7 @@ function ItemRow({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-semibold transition-opacity hover:opacity-90"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
               }}
               title={`Unpack into ${packContents.length} separate items`}

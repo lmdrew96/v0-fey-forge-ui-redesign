@@ -10,7 +10,7 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <h1
             className="text-3xl font-bold tracking-widest uppercase"
-            style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent)" }}
+            style={{ fontFamily: "var(--font-display)", color: "var(--scene-accent-2)" }}
           >
             FeyForge
           </h1>

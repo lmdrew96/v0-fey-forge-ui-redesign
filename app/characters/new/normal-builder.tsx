@@ -99,7 +99,7 @@ function StatPreview({ name, cls, race, subrace, background, assignments, racial
           )}
         </div>
         {maxHp !== null && (
-          <div className="text-xs mt-1" style={{ color: "var(--scene-accent)" }}>
+          <div className="text-xs mt-1" style={{ color: "var(--scene-accent-2)" }}>
             {maxHp} HP · d{cls!.hitDie}
           </div>
         )}
@@ -403,7 +403,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
             className="shrink-0 inline-flex items-center gap-1.5 px-3 py-3 rounded-xl text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-50"
             style={{
               background: "color-mix(in srgb, var(--scene-accent) 12%, var(--scene-surface))",
-              color: "var(--scene-accent)",
+              color: "var(--scene-accent-2)",
               border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, var(--scene-border))",
             }}
             title="Suggest a name with AI"
@@ -453,7 +453,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
             Class
           </h2>
           {cls && (
-            <span className="text-xs" style={{ color: "var(--scene-accent)" }}>
+            <span className="text-xs" style={{ color: "var(--scene-accent-2)" }}>
               d{cls.hitDie} hit die · {ABILITY_ABBREVIATIONS[cls.primaryAbility]} primary
             </span>
           )}
@@ -490,7 +490,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
               border: "1px solid color-mix(in srgb, var(--scene-accent) 20%, var(--scene-border))",
             }}
           >
-            <p className="text-sm italic" style={{ color: "var(--scene-accent)" }}>
+            <p className="text-sm italic" style={{ color: "var(--scene-accent-2)" }}>
               &ldquo;{cls.flavorText}&rdquo;
             </p>
             <p className="text-sm" style={{ color: "var(--scene-text-muted)" }}>{cls.description}</p>
@@ -619,7 +619,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
                 <span style={{ color: "var(--scene-text-primary)" }}>Speed</span>{" "}{race.speed}ft
               </span>
               {Object.entries(race.abilityBonuses).map(([k, v]) => (
-                <span key={k} style={{ color: "var(--scene-accent)" }}>
+                <span key={k} style={{ color: "var(--scene-accent-2)" }}>
                   +{v} {ABILITY_ABBREVIATIONS[k as Ability]}
                 </span>
               ))}
@@ -640,7 +640,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
             {race.subraces && race.subraces.length > 0 && (
               <div className="pt-1">
                 <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--scene-text-muted)" }}>
-                  Subrace <span style={{ color: "var(--scene-accent)" }}>*</span>
+                  Subrace <span style={{ color: "var(--scene-accent-2)" }}>*</span>
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {race.subraces.map(sr => (
@@ -663,7 +663,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
                     <p className="text-xs" style={{ color: "var(--scene-text-muted)" }}>{subrace.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {Object.entries(subrace.abilityBonuses).map(([k, v]) => (
-                        <span key={k} className="text-xs" style={{ color: "var(--scene-accent)" }}>
+                        <span key={k} className="text-xs" style={{ color: "var(--scene-accent-2)" }}>
                           +{v} {ABILITY_ABBREVIATIONS[k as Ability]}
                         </span>
                       ))}
@@ -824,7 +824,7 @@ export function NormalBuilder({ onComplete, saving }: NormalBuilderProps) {
                   {ABILITY_HINTS[ability]}
                 </div>
                 {racial > 0 && (
-                  <span className="text-xs tabular-nums" style={{ color: "var(--scene-accent)" }}>
+                  <span className="text-xs tabular-nums" style={{ color: "var(--scene-accent-2)" }}>
                     +{racial} racial
                   </span>
                 )}

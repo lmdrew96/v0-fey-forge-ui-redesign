@@ -93,7 +93,7 @@ export function AbilityBlock({
       >
         {total}
       </div>
-      <div className="text-sm font-semibold" style={{ color: "var(--scene-accent)" }}>
+      <div className="text-sm font-semibold" style={{ color: "var(--scene-accent-2)" }}>
         {formatModifier(mod)}
       </div>
     </button>
@@ -341,7 +341,7 @@ export function ToolsCard({
                   className="px-1.5 py-1 rounded text-[11px] font-semibold transition-opacity hover:opacity-80"
                   style={{
                     background: "var(--scene-bg)",
-                    color: "var(--scene-accent)",
+                    color: "var(--scene-accent-2)",
                     border: "1px solid var(--scene-border)",
                   }}
                   title={`Roll ${tool} check with ${ABILITY_ABBREVIATIONS[ability]} (proficient)`}

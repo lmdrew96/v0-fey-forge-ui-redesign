@@ -112,7 +112,7 @@ export function DMCaptionControl({ sessionId }: { sessionId: SessionId }) {
               </button>
             </div>
             {isCapturing && (
-              <div className="flex items-center gap-2 text-xs" style={{ color: "var(--scene-accent)" }}>
+              <div className="flex items-center gap-2 text-xs" style={{ color: "var(--scene-accent-2)" }}>
                 <span
                   className="w-2 h-2 rounded-full animate-pulse"
                   style={{ background: "var(--scene-accent)" }}
@@ -135,7 +135,7 @@ export function DMCaptionControl({ sessionId }: { sessionId: SessionId }) {
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 25%, transparent)",
               }}
             >
-              <Lock className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+              <Lock className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
             </div>
             <div className="min-w-0">
               <p className="text-sm font-medium" style={{ color: "var(--scene-text-primary)" }}>

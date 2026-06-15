@@ -193,7 +193,7 @@ export function NotificationBell({ align = "right" }: { align?: "left" | "right"
               <button
                 onClick={() => void markAllRead()}
                 className="flex items-center gap-1 text-xs hover:opacity-80"
-                style={{ color: "var(--scene-accent)" }}
+                style={{ color: "var(--scene-accent-2)" }}
               >
                 <Check className="w-3 h-3" />
                 Mark all read
@@ -243,7 +243,7 @@ export function NotificationBell({ align = "right" }: { align?: "left" | "right"
                       className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center mt-0.5"
                       style={{
                         background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-                        color: "var(--scene-accent)",
+                        color: "var(--scene-accent-2)",
                       }}
                     >
                       <Icon className="w-3.5 h-3.5" />

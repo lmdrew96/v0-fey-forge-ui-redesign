@@ -92,7 +92,7 @@ function InvocationPicker({
                         <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full" style={{ background: "var(--scene-border)", color: "var(--scene-text-muted)" }}>Lv {inv.minLevel}+</span>
                       )}
                       {inv.prerequisite && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in srgb, var(--scene-accent) 12%, transparent)", color: "var(--scene-accent)" }}>{inv.prerequisite}</span>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in srgb, var(--scene-accent) 12%, transparent)", color: "var(--scene-accent-2)" }}>{inv.prerequisite}</span>
                       )}
                     </div>
                     <p className="text-xs leading-snug mt-0.5" style={{ color: "var(--scene-text-muted)" }}>{inv.description}</p>
@@ -168,7 +168,7 @@ export function InvocationsSection({
     <section className="mb-6">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-1.5">
-          <Eye className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+          <Eye className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
           <h2 className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>Eldritch Invocations</h2>
           <span
             className="text-xs px-2 py-0.5 rounded-md tabular-nums"

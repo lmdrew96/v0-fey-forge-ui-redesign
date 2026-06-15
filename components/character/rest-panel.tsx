@@ -35,7 +35,7 @@ export function HpEditor({ char }: { char: CharDoc }) {
       style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
     >
       <div className="flex items-center gap-1.5 mb-3">
-        <Heart className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+        <Heart className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
         <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
           Hit Points
         </span>
@@ -75,7 +75,7 @@ export function HpEditor({ char }: { char: CharDoc }) {
             className="flex-1 py-1.5 rounded text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-30"
             style={{
               background: "color-mix(in srgb, var(--scene-accent) 18%, transparent)",
-              color: "var(--scene-accent)",
+              color: "var(--scene-accent-2)",
               border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
             }}
           >
@@ -164,7 +164,7 @@ export function RestPanel({
       style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
     >
       <div className="flex items-center gap-1.5 mb-3">
-        <Moon className="h-3.5 w-3.5" style={{ color: "var(--scene-accent)" }} />
+        <Moon className="h-3.5 w-3.5" style={{ color: "var(--scene-accent-2)" }} />
         <span className="text-xs uppercase tracking-widest" style={{ color: "var(--scene-text-muted)" }}>
           Rest
         </span>
@@ -194,7 +194,7 @@ export function RestPanel({
               className="px-3 py-1.5 rounded text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-30"
               style={{
                 background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-                color: "var(--scene-accent)",
+                color: "var(--scene-accent-2)",
                 border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
               }}
               title={atFullHp ? "Already at full HP" : `Spend a d${pool.diceSize} (${remaining} left)`}
@@ -216,7 +216,7 @@ export function RestPanel({
           className="w-full inline-flex items-center justify-center gap-2 py-2 mb-2 rounded-md text-sm font-medium transition-opacity hover:opacity-80"
           style={{
             background: "color-mix(in srgb, var(--scene-accent) 14%, transparent)",
-            color: "var(--scene-accent)",
+            color: "var(--scene-accent-2)",
             border: "1px solid color-mix(in srgb, var(--scene-accent) 32%, transparent)",
           }}
         >

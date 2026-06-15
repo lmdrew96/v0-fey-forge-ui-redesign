@@ -39,7 +39,7 @@ export function CharacterAvatar({
         border: "1px solid color-mix(in srgb, var(--scene-accent) 30%, transparent)",
       }}
     >
-      <Shield className={iconClassName} style={{ color: "var(--scene-accent)" }} />
+      <Shield className={iconClassName} style={{ color: "var(--scene-accent-2)" }} />
     </div>
   )
 }

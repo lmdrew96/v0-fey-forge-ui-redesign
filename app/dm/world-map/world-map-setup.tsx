@@ -88,7 +88,7 @@ export function MapSetup({
           className="flex items-center gap-2 text-2xl font-bold"
           style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}
         >
-          <Globe className="h-6 w-6" style={{ color: "var(--scene-accent)" }} />
+          <Globe className="h-6 w-6" style={{ color: "var(--scene-accent-2)" }} />
           {changing ? "Change Map" : "World Map"}
         </h1>
         <p className="mt-1 text-sm" style={{ color: "var(--scene-text-muted)" }}>
@@ -176,7 +176,7 @@ function PremiumMapPicker({ onPick }: { onPick: (id: WorldMapId, name: string) =
   return (
     <div className="mb-6">
       <div className="mb-1 flex items-center gap-2">
-        <Sparkles className="h-4 w-4" style={{ color: "var(--scene-accent)" }} />
+        <Sparkles className="h-4 w-4" style={{ color: "var(--scene-accent-2)" }} />
         <h2
           className="text-sm font-semibold uppercase tracking-widest"
           style={{ color: "var(--scene-text-muted)" }}
@@ -371,7 +371,7 @@ function MapChooser({
                     {tier.sub} pins
                   </span>
                 </span>
-                {locked && <Crown className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent)" }} />}
+                {locked && <Crown className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />}
                 {adopting && <Loader2 className="h-4 w-4 shrink-0 animate-spin" />}
               </button>
             )
@@ -396,13 +396,13 @@ function MapChooser({
           className="mb-6 flex items-center gap-3 rounded-xl p-4"
           style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
         >
-          <Crown className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+          <Crown className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
           <p className="text-sm" style={{ color: "var(--scene-text-muted)" }}>
             Uploading your own maps is a premium feature. Pick a starter map below, or{" "}
             <Link
               href="/account"
               className="font-medium underline underline-offset-2 hover:opacity-80"
-              style={{ color: "var(--scene-accent)" }}
+              style={{ color: "var(--scene-accent-2)" }}
             >
               upgrade
             </Link>{" "}
@@ -458,7 +458,7 @@ function MapChooser({
                   {preset.name}
                 </span>
                 {preset.isPremiumPreset && (
-                  <Crown className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+                  <Crown className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
                 )}
               </div>
             </button>
@@ -558,13 +558,13 @@ function MapUploader({ campaignId, onDone }: { campaignId: CampaignId; onDone?: 
           </>
         ) : (
           <>
-            <Upload className="h-5 w-5" style={{ color: "var(--scene-accent)" }} />
+            <Upload className="h-5 w-5" style={{ color: "var(--scene-accent-2)" }} />
             Upload a map image (PNG, JPG, WebP, SVG)
           </>
         )}
       </button>
       <p className="mt-2 text-center text-xs" style={{ color: "var(--scene-text-muted)" }}>
-        Image only — no pins. Use <span style={{ color: "var(--scene-accent)" }}>Build your own world</span> above to import an Azgaar world with locations.
+        Image only — no pins. Use <span style={{ color: "var(--scene-accent-2)" }}>Build your own world</span> above to import an Azgaar world with locations.
       </p>
     </div>
   )
@@ -661,7 +661,7 @@ function AzgaarWorldBuilder({ campaignId, onDone }: { campaignId: CampaignId; on
       style={{ background: "var(--scene-surface)", border: "1px solid var(--scene-border)" }}
     >
       <div className="flex items-center gap-2">
-        <Wand2 className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent)" }} />
+        <Wand2 className="h-5 w-5 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
         <h3 className="text-sm font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "var(--scene-text-primary)" }}>
           Build your own world
         </h3>
@@ -679,7 +679,7 @@ function AzgaarWorldBuilder({ campaignId, onDone }: { campaignId: CampaignId; on
         className="mt-3 inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-opacity hover:opacity-90"
         style={{
           background: "color-mix(in srgb, var(--scene-accent) 16%, transparent)",
-          color: "var(--scene-accent)",
+          color: "var(--scene-accent-2)",
           border: "1px solid color-mix(in srgb, var(--scene-accent) 38%, transparent)",
         }}
       >
@@ -766,7 +766,7 @@ function FilePickButton({
       }}
     >
       {chosen ? (
-        <Check className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent)" }} />
+        <Check className="h-4 w-4 shrink-0" style={{ color: "var(--scene-accent-2)" }} />
       ) : (
         <Icon className="h-4 w-4 shrink-0" style={{ color: "var(--scene-text-muted)" }} />
       )}

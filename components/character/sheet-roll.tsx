@@ -258,7 +258,7 @@ export function SheetRollCard({
         {result.isAdvantage && (
           <span
             className="text-xs font-semibold"
-            style={{ color: "var(--scene-accent)" }}
+            style={{ color: "var(--scene-accent-2)" }}
           >
             ADV
           </span>
@@ -292,7 +292,7 @@ export function SheetRollCard({
       {isNat20 && (
         <div
           className="text-center text-xs font-semibold"
-          style={{ color: "var(--scene-accent)" }}
+          style={{ color: "var(--scene-accent-2)" }}
         >
           Natural 20!
         </div>
